@@ -180,6 +180,8 @@ namespace ConsertoDeLivro.Controllers {
         [Authorize]
         public ActionResult InfoUser(int id) {
             Usuario usuario = db.Usuarios.Find(id);
+            usuario.Estado = new Estado();
+            usuario.Estado = db.Estados.Find(usuario.EstadoID);
             return View(usuario);
         }
     }

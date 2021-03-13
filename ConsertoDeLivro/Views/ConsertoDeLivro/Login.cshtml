@@ -1,35 +1,33 @@
 ﻿@model ConsertoDeLivro.Models.Usuario
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "ENTRAR";
     Layout = "~/Views/Shared/_LayoutAuth.cshtml";
 }
 
-<label class="textAlt">ENTRAR</label>
+<label class="lblTitulo">@ViewBag.Title</label>
 @using (Html.BeginForm()) {
     <br />
-    <div class="centralizado">
+    <div>
         <label>Email</label>
         @Html.EditorFor(m => m.Email)
     </div>
     <br />
-    <div class="centralizado">
+    <div>
         <label>Senha</label>
         @Html.PasswordFor(m => m.Senha)
-    </div>
-    <div class="centralizado">
         <span class="msgErro">@ViewBag.MsgErro</span>
     </div>
     <br />
-    <div class="centralizado">
+    <div>
         @Html.ActionLink("Não tem uma conta? Crie uma clicando aqui", "Criar", "Usuario")
     </div>
     <br />
-    <div class="centralizado">
-        <input class="btnLogin" type="submit" value="Login">
+    <div>
+        <input class="btn btn-success" type="submit" value="Entrar">
     </div>
     <br />
-    <div class="centralizado">
+    <div>
         @Html.ActionLink("Cancelar", "Cancelar", "ConsertoDeLivro", "", new { @class = "btnCancelar centralizado" })
     </div>
 }

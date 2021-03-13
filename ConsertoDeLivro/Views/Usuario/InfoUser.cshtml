@@ -31,7 +31,11 @@
         </div>
         <div>
             <label>Endereço:</label>
-            <span>@Model.Logradouro, @Model.Numero - @Model.Bairro</span>
+            @if (Model.Logradouro != null) {
+                <span>@Model.Logradouro, @Model.Numero - @Model.Bairro</span>
+            } else {
+                <span></span>
+            }
         </div>
         <div>
             @Html.LabelFor(user => user.Cidade):
@@ -39,7 +43,7 @@
         </div>
         <div>
             @Html.LabelFor(user => user.Estado):
-            <span>@Model.Estado</span>
+            <span>@Model.Estado.Nome</span>
         </div>
         @*<p></p>*@
         <div>
@@ -60,7 +64,7 @@
         </div>
         <hr />
         <div class="divBtns">
-            @Html.ActionLink("Alterar dados", "Atualizar", "Usuario", new { id = Model.UsuarioID }, new { @class="btn btn-success" })
+            @Html.ActionLink("Alterar dados", "Atualizar", "Usuario", new { id = Model.UsuarioID }, new { @class = "btn btn-success" })
             <a href="/ConsertoDeLivro/Index">Voltar</a>
         </div>
     </div>
