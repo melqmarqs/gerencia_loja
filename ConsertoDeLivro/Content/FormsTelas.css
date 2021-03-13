@@ -1,0 +1,55 @@
+﻿.lblTitulo {
+    font-size: 2em;
+    margin: 10px 5px 0px 20px;
+}
+
+.divForm {
+    border: 1px;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 10px;
+    box-sizing: border-box;
+    box-shadow: rgba(0,0,0,0.1) 0px 0px 10px 1px;
+    width: 100%;
+}
+
+.divCorpo div, .divDev div {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.divCorpo, .divDev {
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 10px;
+}
+
+.divDev div {
+    margin: 0px 20px;
+}
+
+.divBtns {
+    margin: 0px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.aCep {
+    font-size: 12px;
+}
+
+.divColumn {
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    /*align-items: flex-start;*/
+}
+
+select {
+    height: 26px;
+}

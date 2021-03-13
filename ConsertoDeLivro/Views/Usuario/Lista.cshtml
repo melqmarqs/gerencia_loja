@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ConsertoDeLivro.Models.Usuario>
+@{
+    ViewBag.Title = "Usuários";
+}
+
+<h2>@ViewBag.Title</h2>
+<table style="width: 100%;">
+    <tr style="border-bottom: 1px solid black">
+        <th>@Html.DisplayNameFor(usr => usr.UsuarioID)</th>
+        <th>@Html.DisplayNameFor(usr => usr.Nome)</th>
+        <th>@Html.DisplayNameFor(usr => usr.Adm)</th>
+        <th>@Html.DisplayNameFor(usr => usr.Dev)</th>
+        <th>@Html.DisplayNameFor(usr => usr.Email)</th>
+        <th>@Html.DisplayNameFor(usr => usr.CPF)</th>
+        <th>@Html.DisplayNameFor(usr => usr.Celular)</th>
+        <th>Opções</th>
+    </tr>
+    @foreach (var item in Model) {
+        <tr style="border-bottom: 1px solid gray;">
+            <td>@Html.DisplayFor(modelItem => item.UsuarioID)</td>
+            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+            <td>
+                @if (item.Adm) {
+                    <span>Sim</span>
+                } else {
+                    <span>Não</span>
+                }
+            </td>
+            <td>
+                @if (item.Dev) {
+                    <span>Sim</span>
+                } else {
+                    <span>Não</span>
+                }
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+            <td>@Html.DisplayFor(modelItem => item.CPF)</td>
+            <td>@Html.DisplayFor(modelItem => item.Celular)</td>
+            <td>
+                @Html.ActionLink("Editar", "Atualizar", new { id = item.UsuarioID }) |
+                @Html.ActionLink("Excluir", "Excluir", new { id = item.UsuarioID })
+            </td>
+        </tr>
+    }
+</table>
+<br />
+@Html.ActionLink("Criar novo usuário", "Criar")

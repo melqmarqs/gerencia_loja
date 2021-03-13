@@ -1,0 +1,37 @@
+﻿@model ConsertoDeLivro.Models.Material
+@{
+    ViewBag.Title = "Criar material";
+}
+
+<link href="~/Content/FormsTelas.css" rel="stylesheet" type="text/css" />
+
+@using (Html.BeginForm()) {
+    <div class="divForm">
+        <label class="lblTitulo">@ViewBag.Title</label>
+        <hr />
+        <div class="divCorpo">
+            <div>
+                @Html.LabelFor(model => model.Codigo)
+                @Html.EditorFor(model => model.Codigo)
+            </div>
+        </div>
+        <div class="divCorpo">
+            <div>
+                @Html.LabelFor(model => model.Nome)
+                @Html.EditorFor(model => model.Nome)
+            </div>
+        </div>
+        <div class="divCorpo">
+            <div>
+                @Html.LabelFor(model => model.Descricao)
+                @Html.EditorFor(model => model.Descricao)
+            </div>
+        </div>
+        <hr />
+        <div class="divBtns">
+            <input type="submit" value="Salvar material" class="btn btn-success" />
+            @Html.ActionLink("Cancelar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+}
+

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ConsertoDeLivro.Models.Material>
+@{
+    ViewBag.Title = "Lista de Materiais";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model != null) {
+
+
+    <table border="1">
+        <tr>
+            <th>
+                <span>ID</span>
+            </th>
+            <th>
+                <span>Nome</span>
+            </th>
+            <th>
+                <span>Descrição</span>
+            </th>
+            <th>
+                <span></span>
+            </th>
+        </tr>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Descricao)
+                </td>
+                <td>
+                    <a href="#">Editar</a> |
+                    @Html.ActionLink("Apagar", "ApagarMaterial", "Material", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+    </table>
+}
+@Html.ActionLink("Voltar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-warning" })
+@Html.ActionLink("Novo material", "CriarMaterial", "Material", null, new { @class = "btn btn-success" })

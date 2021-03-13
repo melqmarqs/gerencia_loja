@@ -1,0 +1,433 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{32298080-8782-42B9-A60D-7F5746E2BAF9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConsertoDeLivro</RootNamespace>
+    <AssemblyName>ConsertoDeLivro</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44318</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\FormsTelas.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\cep.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConsertoDeLivroController.cs" />
+    <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\PedidoController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101271944054_InitialCreate.cs" />
+    <Compile Include="Migrations\202101271944054_InitialCreate.designer.cs">
+      <DependentUpon>202101271944054_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101272041408_RemoveStringLengthFromEmailInUsuarios.cs" />
+    <Compile Include="Migrations\202101272041408_RemoveStringLengthFromEmailInUsuarios.designer.cs">
+      <DependentUpon>202101272041408_RemoveStringLengthFromEmailInUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101292054346_AddFieldDevToTableUsuario.cs" />
+    <Compile Include="Migrations\202101292054346_AddFieldDevToTableUsuario.designer.cs">
+      <DependentUpon>202101292054346_AddFieldDevToTableUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102170001540_Senha.cs" />
+    <Compile Include="Migrations\202102170001540_Senha.designer.cs">
+      <DependentUpon>202102170001540_Senha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102191100221_InsertTableEndereco.cs" />
+    <Compile Include="Migrations\202102191100221_InsertTableEndereco.designer.cs">
+      <DependentUpon>202102191100221_InsertTableEndereco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102230300148_ColunasEstadoCidadeEmEndereco.cs" />
+    <Compile Include="Migrations\202102230300148_ColunasEstadoCidadeEmEndereco.designer.cs">
+      <DependentUpon>202102230300148_ColunasEstadoCidadeEmEndereco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102240024213_TirandoRequiredDoCEP.cs" />
+    <Compile Include="Migrations\202102240024213_TirandoRequiredDoCEP.designer.cs">
+      <DependentUpon>202102240024213_TirandoRequiredDoCEP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102241117152_IncluindoInfoEnderecoEmUsuario.cs" />
+    <Compile Include="Migrations\202102241117152_IncluindoInfoEnderecoEmUsuario.designer.cs">
+      <DependentUpon>202102241117152_IncluindoInfoEnderecoEmUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102250236599_AtualizaTabelaUsuario.cs" />
+    <Compile Include="Migrations\202102250236599_AtualizaTabelaUsuario.designer.cs">
+      <DependentUpon>202102250236599_AtualizaTabelaUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102260136084_TypePasswordSenha.cs" />
+    <Compile Include="Migrations\202102260136084_TypePasswordSenha.designer.cs">
+      <DependentUpon>202102260136084_TypePasswordSenha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102272054265_TablePedido.cs" />
+    <Compile Include="Migrations\202102272054265_TablePedido.designer.cs">
+      <DependentUpon>202102272054265_TablePedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102272111367_Usuario.cs" />
+    <Compile Include="Migrations\202102272111367_Usuario.designer.cs">
+      <DependentUpon>202102272111367_Usuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103011105056_AtualizacaoTabelaPedido.cs" />
+    <Compile Include="Migrations\202103011105056_AtualizacaoTabelaPedido.designer.cs">
+      <DependentUpon>202103011105056_AtualizacaoTabelaPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103012217289_TirandoEndDeUsuario.cs" />
+    <Compile Include="Migrations\202103012217289_TirandoEndDeUsuario.designer.cs">
+      <DependentUpon>202103012217289_TirandoEndDeUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103012247027_AddTabelaEndereco.cs" />
+    <Compile Include="Migrations\202103012247027_AddTabelaEndereco.designer.cs">
+      <DependentUpon>202103012247027_AddTabelaEndereco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103020115105_BackEndUsuario.cs" />
+    <Compile Include="Migrations\202103020115105_BackEndUsuario.designer.cs">
+      <DependentUpon>202103020115105_BackEndUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103042046098_CampoCEP.cs" />
+    <Compile Include="Migrations\202103042046098_CampoCEP.designer.cs">
+      <DependentUpon>202103042046098_CampoCEP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103042216213_TabelaPedidoFKUsuarioID.cs" />
+    <Compile Include="Migrations\202103042216213_TabelaPedidoFKUsuarioID.designer.cs">
+      <DependentUpon>202103042216213_TabelaPedidoFKUsuarioID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103051408559_DataEmPedido.cs" />
+    <Compile Include="Migrations\202103051408559_DataEmPedido.designer.cs">
+      <DependentUpon>202103051408559_DataEmPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103051648452_DataTipoString.cs" />
+    <Compile Include="Migrations\202103051648452_DataTipoString.designer.cs">
+      <DependentUpon>202103051648452_DataTipoString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103051804234_TabelaEstadoEndereco.cs" />
+    <Compile Include="Migrations\202103051804234_TabelaEstadoEndereco.designer.cs">
+      <DependentUpon>202103051804234_TabelaEstadoEndereco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103051807253_Tabela.cs" />
+    <Compile Include="Migrations\202103051807253_Tabela.designer.cs">
+      <DependentUpon>202103051807253_Tabela.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103051828224_SQL1.cs" />
+    <Compile Include="Migrations\202103051828224_SQL1.designer.cs">
+      <DependentUpon>202103051828224_SQL1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103051840447_BDEstadoEEndereco1.cs" />
+    <Compile Include="Migrations\202103051840447_BDEstadoEEndereco1.designer.cs">
+      <DependentUpon>202103051840447_BDEstadoEEndereco1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103051849090_BDEstadoEEndereco2.cs" />
+    <Compile Include="Migrations\202103051849090_BDEstadoEEndereco2.designer.cs">
+      <DependentUpon>202103051849090_BDEstadoEEndereco2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103052056140_AddColunaCodigoToMaterial.cs" />
+    <Compile Include="Migrations\202103052056140_AddColunaCodigoToMaterial.designer.cs">
+      <DependentUpon>202103052056140_AddColunaCodigoToMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103090050249_Usuario1.cs" />
+    <Compile Include="Migrations\202103090050249_Usuario1.designer.cs">
+      <DependentUpon>202103090050249_Usuario1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103090117062_FKEstado.cs" />
+    <Compile Include="Migrations\202103090117062_FKEstado.designer.cs">
+      <DependentUpon>202103090117062_FKEstado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103090122074_AA.cs" />
+    <Compile Include="Migrations\202103090122074_AA.designer.cs">
+      <DependentUpon>202103090122074_AA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ConsertoDeLivroContext.cs" />
+    <Compile Include="Models\Estado.cs" />
+    <Compile Include="Models\Material.cs" />
+    <Compile Include="Models\Pedido.cs" />
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\ConsertoDeLivro\Index.cshtml" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Usuario\Lista.cshtml" />
+    <Content Include="Views\Usuario\Criar.cshtml" />
+    <Content Include="Views\Usuario\Atualizar.cshtml" />
+    <Content Include="Views\Usuario\Excluir.cshtml" />
+    <Content Include="Views\Usuario\InfoUser.cshtml" />
+    <Content Include="Views\Pedido\CriarNovoPedido.cshtml" />
+    <Content Include="Views\Material\CriarMaterial.cshtml" />
+    <Content Include="Views\Material\ListaMateriais.cshtml" />
+    <Content Include="Views\Pedido\ListaPedidos.cshtml" />
+    <Content Include="Views\Material\AtualizarMaterial.cshtml" />
+    <Content Include="Views\ConsertoDeLivro\RecuperarSenha.cshtml" />
+    <Content Include="Views\ConsertoDeLivro\Login.cshtml" />
+    <Content Include="Views\Shared\_LayoutAuth.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202101271944054_InitialCreate.resx">
+      <DependentUpon>202101271944054_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101272041408_RemoveStringLengthFromEmailInUsuarios.resx">
+      <DependentUpon>202101272041408_RemoveStringLengthFromEmailInUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101292054346_AddFieldDevToTableUsuario.resx">
+      <DependentUpon>202101292054346_AddFieldDevToTableUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102170001540_Senha.resx">
+      <DependentUpon>202102170001540_Senha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102191100221_InsertTableEndereco.resx">
+      <DependentUpon>202102191100221_InsertTableEndereco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102230300148_ColunasEstadoCidadeEmEndereco.resx">
+      <DependentUpon>202102230300148_ColunasEstadoCidadeEmEndereco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102240024213_TirandoRequiredDoCEP.resx">
+      <DependentUpon>202102240024213_TirandoRequiredDoCEP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102241117152_IncluindoInfoEnderecoEmUsuario.resx">
+      <DependentUpon>202102241117152_IncluindoInfoEnderecoEmUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102250236599_AtualizaTabelaUsuario.resx">
+      <DependentUpon>202102250236599_AtualizaTabelaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102260136084_TypePasswordSenha.resx">
+      <DependentUpon>202102260136084_TypePasswordSenha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102272054265_TablePedido.resx">
+      <DependentUpon>202102272054265_TablePedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102272111367_Usuario.resx">
+      <DependentUpon>202102272111367_Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103011105056_AtualizacaoTabelaPedido.resx">
+      <DependentUpon>202103011105056_AtualizacaoTabelaPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103012217289_TirandoEndDeUsuario.resx">
+      <DependentUpon>202103012217289_TirandoEndDeUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103012247027_AddTabelaEndereco.resx">
+      <DependentUpon>202103012247027_AddTabelaEndereco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103020115105_BackEndUsuario.resx">
+      <DependentUpon>202103020115105_BackEndUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103042046098_CampoCEP.resx">
+      <DependentUpon>202103042046098_CampoCEP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103042216213_TabelaPedidoFKUsuarioID.resx">
+      <DependentUpon>202103042216213_TabelaPedidoFKUsuarioID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103051408559_DataEmPedido.resx">
+      <DependentUpon>202103051408559_DataEmPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103051648452_DataTipoString.resx">
+      <DependentUpon>202103051648452_DataTipoString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103051804234_TabelaEstadoEndereco.resx">
+      <DependentUpon>202103051804234_TabelaEstadoEndereco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103051807253_Tabela.resx">
+      <DependentUpon>202103051807253_Tabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103051828224_SQL1.resx">
+      <DependentUpon>202103051828224_SQL1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103051840447_BDEstadoEEndereco1.resx">
+      <DependentUpon>202103051840447_BDEstadoEEndereco1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103051849090_BDEstadoEEndereco2.resx">
+      <DependentUpon>202103051849090_BDEstadoEEndereco2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103052056140_AddColunaCodigoToMaterial.resx">
+      <DependentUpon>202103052056140_AddColunaCodigoToMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103090050249_Usuario1.resx">
+      <DependentUpon>202103090050249_Usuario1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103090117062_FKEstado.resx">
+      <DependentUpon>202103090117062_FKEstado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103090122074_AA.resx">
+      <DependentUpon>202103090122074_AA.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59031</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44318/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

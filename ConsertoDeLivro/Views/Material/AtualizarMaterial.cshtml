@@ -1,0 +1,38 @@
+﻿@model ConsertoDeLivro.Models.Material
+@{
+    ViewBag.Title = "Atualizar material";
+}
+
+<link href="~/Content/FormsTelas.css" rel="stylesheet" type="text/css" />
+
+@using (Html.BeginForm()) {
+    <div class="divForm">
+        <label class="lblTitulo">@ViewBag.Title</label>
+        <hr />
+        @Html.HiddenFor(model => model.Id)
+        <div class="divCorpo">
+            <div>
+                @Html.LabelFor(model => model.Codigo)
+                @Html.EditorFor(model => model.Codigo)
+            </div>
+        </div>
+        <div class="divCorpo">
+            <div>
+                @Html.LabelFor(model => model.Nome)
+                @Html.EditorFor(model => model.Nome)
+            </div>
+        </div>
+        <div class="divCorpo">
+            <div>
+                @Html.LabelFor(model => model.Descricao)
+                @Html.EditorFor(model => model.Descricao)
+            </div>
+        </div>
+        <hr />
+        <div class="divBtns">
+            <input type="button" value="Atualizar material" class="btn btn-success" />
+            @Html.ActionLink("Cancelar", "ListaMateriais", "Material")
+        </div>
+    </div>
+}
+

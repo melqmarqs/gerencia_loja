@@ -1,0 +1,120 @@
+﻿@using ConsertoDeLivro.Models;
+@using System.Web.Optimization;
+@model ConsertoDeLivro.Models.Usuario
+
+
+@{
+    ViewBag.Title = "Criar";
+    Usuario usuario = Session["Usuario"] as Usuario;
+}
+
+@Scripts.Render("~/Scripts/cep.js")
+<link href="~/Content/FormsTelas.css" rel="stylesheet" type="text/css" />
+
+@using (Html.BeginForm()) {
+    <div class="divForm">
+        <label class="lblTitulo">@ViewBag.Title</label>
+        <hr />
+        <div class="divCorpo">
+            <div>
+                @Html.LabelFor(model => model.Nome)
+                @Html.EditorFor(model => model.Nome)
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(model => model.UltimoNome)
+                @Html.EditorFor(model => model.UltimoNome)
+                @Html.ValidationMessageFor(model => model.UltimoNome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="divCorpo">
+            <div>
+                @Html.LabelFor(model => model.Celular)
+                @Html.EditorFor(model => model.Celular)
+                @Html.ValidationMessageFor(model => model.Celular, "", new { @class = "text-danger" })
+                <span class="text-danger">@ViewBag.CelularDuplicado</span>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.CPF)
+                @Html.EditorFor(model => model.CPF)
+                @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
+                <span class="text-danger">@ViewBag.CPFDuplicado</span>
+            </div>
+        </div>
+        <div class="divCorpo">
+            <div>
+                @*@Html.LabelFor(model => model.CEP)*@
+                <label>CEP&nbsp;<a href="https://buscacepinter.correios.com.br/app/endereco/index.php?t" class="aCep" target="_blank">Não sabe seu cep? Clique aqui</a></label>
+                @Html.EditorFor(model => model.CEP)
+                @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="divCorpo">
+            <div>
+                @Html.LabelFor(model => model.Logradouro)
+                @Html.TextBoxFor(model => model.Logradouro, new { @size = 100 })
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Numero)
+                @Html.TextBoxFor(model => model.Numero, new { @size = 8 })
+            </div>
+            <div>
+                @Html.LabelFor(dados => dados.Complemento)
+                @Html.EditorFor(dados => dados.Complemento)
+            </div>
+        </div>
+        <div class="divCorpo">
+            <div>
+                @Html.LabelFor(model => model.Bairro)
+                @Html.TextBoxFor(model => model.Bairro)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Cidade)
+                @Html.TextBoxFor(model => model.Cidade)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Estado)
+                @*@Html.TextBoxFor(model => model.Estado)*@
+                @Html.DropDownList("EstadoID", null, "", new { @heigth = "20" })
+            </div>
+        </div>
+        <div class="divCorpo">
+            <div>
+                @Html.LabelFor(model => model.Email)
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                <span class="text-danger">@ViewBag.EmailDuplicado</span>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Senha)
+                @Html.PasswordFor(model => model.Senha)
+                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @if (usuario != null && usuario.Dev == true) {
+            <hr />
+            <div class="divDev">
+                <div>
+                    <label>Administrador?</label>
+                    @Html.EditorFor(model => model.Adm)
+                </div>
+                <div>
+                    <label>Desenvolvedor?</label>
+                    @Html.EditorFor(model => model.Dev)
+                </div>
+            </div>
+        }
+
+        <hr />
+        <div class="divBtns">
+            <input type="submit" value="Criar" class="btn btn-success" />
+            @if (usuario != null && usuario.Dev == true) {
+                @Html.ActionLink("Voltar", "Lista", "Usuario")
+            } else {
+                @Html.ActionLink("Voltar", "Index", "ConsertoDeLivro")
+            }
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,67 @@
+﻿@model ConsertoDeLivro.Models.Usuario
+@{
+    ViewBag.Title = "Meus dados";
+}
+
+<link href="~/Content/FormsTelas.css" type="text/css" rel="stylesheet" />
+
+<div class="divForm">
+    <label class="lblTitulo">@ViewBag.Title</label>
+    <hr />
+    <div class="divColumn">
+        <div>
+            @Html.LabelFor(user => user.Nome):
+            <span>@Model.Nome</span>
+        </div>
+        <div>
+            @Html.LabelFor(user => user.UltimoNome):
+            <span>@Model.UltimoNome</span>
+        </div>
+        <div>
+            @Html.LabelFor(user => user.CPF):
+            <span>@Model.CPF</span>
+        </div>
+        <div>
+            @Html.LabelFor(user => user.Celular):
+            <span>@Model.Celular</span>
+        </div>
+        <div>
+            @Html.LabelFor(user => user.Email):
+            <span>@Model.Email</span>
+        </div>
+        <div>
+            <label>Endereço:</label>
+            <span>@Model.Logradouro, @Model.Numero - @Model.Bairro</span>
+        </div>
+        <div>
+            @Html.LabelFor(user => user.Cidade):
+            <span>@Model.Cidade</span>
+        </div>
+        <div>
+            @Html.LabelFor(user => user.Estado):
+            <span>@Model.Estado</span>
+        </div>
+        @*<p></p>*@
+        <div>
+            <label>Administrador</label>:
+            @if (Model.Adm) {
+                <span>Sim</span>
+            } else {
+                <span>Não</span>
+            }
+        </div>
+        <div>
+            <label>Desenvolvedor</label>:
+            @if (Model.Dev) {
+                <span>Sim</span>
+            } else {
+                <span>Não</span>
+            }
+        </div>
+        <hr />
+        <div class="divBtns">
+            @Html.ActionLink("Alterar dados", "Atualizar", "Usuario", new { id = Model.UsuarioID }, new { @class="btn btn-success" })
+            <a href="/ConsertoDeLivro/Index">Voltar</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,160 @@
+﻿@using ConsertoDeLivro.Models;
+@using System.Web.Optimization;
+
+@{
+    Usuario usuario = Session["Usuario"] as Usuario;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja - @ViewBag.Title</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    @Scripts.Render("~/Scripts/jquery-3.4.1.js")
+    <style>
+        * {
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1em;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            background-color: rgba(250,191,34,0.2);
+        }
+
+        .divTop {
+            width: 100%;
+            height: 50px;
+            border-bottom: 2px solid #FABF22;
+            padding: 0px 30px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(250,191,34,0.7);
+        }
+
+            .divTop a {
+                margin: 5px 7.5px;
+                color: black;
+                text-decoration: none;
+            }
+
+                .divTop a:hover {
+                    font-weight: 600;
+                }
+
+        .btnsMenu {
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .btnsEntrarCadastrar {
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .divBody {
+            margin: 5px 40px;
+        }
+
+        .dropdown-menu hr {
+            margin: 3px 5px;
+        }
+
+        .spanLivros {
+            font-size: 18px;
+        }
+
+        .spanConserto, .spanPerso {
+            font-size: 10px;
+        }
+
+        .lblMopf {
+            margin: 0;
+            font-size: 30px;
+            box-sizing: content-box;
+        }
+
+            .lblMopf:hover {
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <div class="divTop">
+        <div class="btnsMenu">
+            <a href="@Url.Action("Index", "ConsertoDeLivro")">
+                <label class="lblMopf">&Mopf;</label>
+            </a>
+            @Html.ActionLink("Home", "Index", "ConsertoDeLivro")
+            @{
+                if (usuario != null) {
+                    if (usuario.Adm) {
+                        @Html.ActionLink("Usuarios", "Lista", "Usuario")
+                        @Html.ActionLink("Materiais", "ListaMateriais", "Material")
+                    }
+                    if (usuario.Dev) {
+                        @Html.ActionLink("Pedidos", "ListaPedidos", "Pedido", new { id = 0 }, null)
+                    }
+                }
+            }
+        </div>
+        <div class="btnsEntrarCadastrar">
+            @{
+                if (usuario != null) {
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Bem-vindo, @usuario.Nome <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="@Url.Action("CriarNovoPedido", "Pedido")"><span class="glyphicon glyphicon-plus"></span>&nbsp;Novo pedido</a><br />
+                            <a href="@Url.Action("ListaPedidos", "Pedido", new { id = usuario.UsuarioID })"><span class="glyphicon glyphicon-th-list"></span>&nbsp;Meus pedidos</a><br />
+                            <a href="@Url.Action("InfoUser", "Usuario", new { id = usuario.UsuarioID })"><span class="glyphicon glyphicon-user"></span>&nbsp;Meus dados</a><br />
+                            <hr />
+                            <a href="@Url.Action("Sair", "ConsertoDeLivro")"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sair</a>
+                        </div>
+                    </div>
+                } else {
+                    @Html.ActionLink("Entrar", "Login", "ConsertoDeLivro")
+                    @Html.ActionLink("Cadastrar Usuario", "Criar", "Usuario")
+                }
+            }
+        </div>
+    </div>
+
+    <div class="divBody">
+        @RenderBody()
+        <hr />
+        <footer class="centralizado">
+            <p>&copy; @DateTime.Now.Year - Conserto e Personalização de Livros</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

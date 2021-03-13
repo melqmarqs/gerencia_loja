@@ -1,0 +1,94 @@
+﻿* {
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+    background-color: rgba(250,191,34,0.7);
+}
+
+.divPai, .divFather {
+    height: 100%;
+    width: 100%;
+}
+
+.divLogin {
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(255,255,255, 0.5);
+    width: 400px;
+    height: 400px;
+}
+
+.centralizado {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textAlt {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+}
+
+.btnLogin {
+    font-size: 1em;
+    height: 30px;
+    width: 100px;
+    border: 0px solid green;
+    border-radius: 10px;
+    background-color: transparent;
+    color: green;
+    cursor: pointer;
+    border: 1px solid green;
+}
+
+    .btnLogin:hover {
+        background-color: rgba(50,205,50,0.2);
+    }
+
+    .btnLogin:active {
+        font-size: 0.9em;
+    }
+
+.btnCancelar {
+    font-size: 0.9em;
+    text-decoration: none;
+    width: 90px;
+    height: 25px;
+    background-color: transparent;
+    color: darkred;
+    border: 1px solid darkred;
+    border-radius: 7px;
+}
+
+    .btnCancelar:hover {
+        background-color: lightcoral;
+        box-sizing: border-box;
+        background-color: rgba(205,50,50,0.2);
+    }
+
+    .btnCancelar:active {
+        font-size: 0.85em;
+    }
+
+.centralizado span {
+    font-size: 0.8em;
+    color: darkred;
+    text-align: center;
+}
