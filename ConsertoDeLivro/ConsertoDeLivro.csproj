@@ -58,6 +58,7 @@
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -117,9 +118,16 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bootbox.all.js" />
+    <Content Include="Scripts\bootbox.all.min.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.locales.js" />
+    <Content Include="Scripts\bootbox.locales.min.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\bumbleblee.js" />
     <Content Include="Scripts\cep.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -287,7 +295,7 @@
     <Content Include="Views\Material\ListaMateriais.cshtml" />
     <Content Include="Views\Pedido\ListaPedidos.cshtml" />
     <Content Include="Views\Material\AtualizarMaterial.cshtml" />
-    <Content Include="Views\ConsertoDeLivro\RecuperarSenha.cshtml" />
+    <Content Include="Views\ConsertoDeLivro\TrocarSenha.cshtml" />
     <Content Include="Views\ConsertoDeLivro\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutAuth.cshtml" />
     <None Include="Web.Debug.config">

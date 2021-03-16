@@ -26,7 +26,7 @@ namespace ConsertoDeLivro.Controllers {
                 var user = usuariosDb.Find(userdb => userdb.Email == usuario.Email && userdb.Senha == usuario.Senha);
                 if (user == null) {
                     ViewBag.MsgErro = "Email e/ou senha incorretos. Por favor, verifique-os.";
-                    return View();
+                    return View(usuario);
                 } else {
                     FormsAuthentication.SetAuthCookie(user.Email, false);
                     Session["Usuario"] = user;
@@ -34,7 +34,7 @@ namespace ConsertoDeLivro.Controllers {
                 }
             }
             ViewBag.MsgErro = "É necessário preencher os dois campos, email e senha.";
-            return View();
+            return View(usuario);
         }
 
         public ActionResult Cancelar() {
@@ -45,6 +45,16 @@ namespace ConsertoDeLivro.Controllers {
             FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult TrocarSenha() {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult TrocarSenha(Usuario usuario) {
+            return View();
         }
     }
 }

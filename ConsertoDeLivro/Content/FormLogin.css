@@ -27,6 +27,7 @@ div {
 .lblTitulo {
     font-size: 2.5em;
     letter-spacing: 5px;
+    text-transform: uppercase;
 }
 
 .msgErro {
@@ -55,4 +56,26 @@ label, input {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.divBtns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+a {
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+input[type=text], input[type=password] {
+    text-align: center;
+    border: 0px;
+    border-radius: 5px;
+    height: 25px;
 }

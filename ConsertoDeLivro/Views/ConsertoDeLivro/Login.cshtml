@@ -1,7 +1,7 @@
 ﻿@model ConsertoDeLivro.Models.Usuario
 
 @{
-    ViewBag.Title = "ENTRAR";
+    ViewBag.Title = "Entrar";
     Layout = "~/Views/Shared/_LayoutAuth.cshtml";
 }
 
@@ -9,13 +9,14 @@
 @using (Html.BeginForm()) {
     <br />
     <div>
-        <label>Email</label>
-        @Html.EditorFor(m => m.Email)
+        @*<label>Email</label>*@
+        <input type="text" placeholder="Email" id="Email" name="Email" />
     </div>
     <br />
     <div>
-        <label>Senha</label>
-        @Html.PasswordFor(m => m.Senha)
+        @*<label>Senha</label>*@
+        @*@Html.PasswordFor(m => m.Senha, htmlAttributes: new { @placeholder="Senha" })*@
+        <input type="password" placeholder="Senha" name="Senha" />
         <span class="msgErro">@ViewBag.MsgErro</span>
     </div>
     <br />
@@ -27,7 +28,8 @@
         <input class="btn btn-success" type="submit" value="Entrar">
     </div>
     <br />
-    <div>
+    <div class="divBtns">
         @Html.ActionLink("Cancelar", "Cancelar", "ConsertoDeLivro", "", new { @class = "btnCancelar centralizado" })
+        <a href="/ConsertoDeLivro/TrocarSenha">Esqueci a senha</a>
     </div>
 }

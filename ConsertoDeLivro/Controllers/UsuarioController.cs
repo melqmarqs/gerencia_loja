@@ -18,6 +18,11 @@ namespace ConsertoDeLivro.Controllers {
             return View(usuarios);
         }
 
+        public ActionResult ListaUsuarios() {
+            var usuarios = db.Usuarios.ToList();
+            return Json(usuarios, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Criar() {
             ViewBag.EstadoID = new SelectList(db.Estados, "EstadoID", "UF");
             return View();

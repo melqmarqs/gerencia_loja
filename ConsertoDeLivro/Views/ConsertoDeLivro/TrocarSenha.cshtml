@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Trocar Senha";
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+}
+
+<label class="lblTitulo">Dados</label>
+@using (Html.BeginForm()) {
+    <br />
+    <div id="divCpfEmail">
+        <label>Informe seu:</label>
+        <div>
+            <input type="text" placeholder="Email" name="Email" />
+        </div>
+        <br />
+        <div>
+            <input type="text" placeholder="CPF" name="CPF" />
+        </div>
+        <br />
+    </div>
+    <div id="divSenha" style="display: none">
+        <div>
+            <input type="password" placeholder="Digite sua nova senha" name="priSenha" />
+        </div>
+        <br />
+        <div>
+            <input type="password" placeholder="Confirme sua senha" name="secSenha" />
+        </div>
+        <br />
+    </div>
+    <div class="divBtns">
+        <a href="@Url.Action("Login", "ConsertoDeLivro")">Voltar</a>
+        <a href="#" onclick="trocarSenha()" id="continuar">Continuar</a>
+        <a href="@Url.Action("TrocarSenha", "ConsertoDeLivro")" style="display: none;" id="updtSenha">Trocar senha</a>
+    </div>
+}
