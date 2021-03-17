@@ -53,3 +53,12 @@
 select {
     height: 26px;
 }
+
+.limitarTam > input[name=Celular] {
+    max-width: 192px;
+}
+
+.limitarTam > span {
+    overflow-wrap: break-word;
+    max-width: 192px;
+}

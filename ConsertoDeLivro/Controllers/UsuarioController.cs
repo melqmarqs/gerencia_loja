@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using System.Web.Security;
+using System.Web.UI;
 
 namespace ConsertoDeLivro.Controllers {
     public class UsuarioController : Controller {
@@ -83,6 +84,8 @@ namespace ConsertoDeLivro.Controllers {
                 if (userSession != null && userSession.Adm) {
                     return RedirectToAction("Lista");
                 } else {
+                    TempData["userNome"] = usuario.Nome + " " + usuario.UltimoNome;
+                    TempData["userEmail"] = usuario.Email;
                     return RedirectToAction("Login", "ConsertoDeLivro");
                 }
             }
@@ -120,19 +123,21 @@ namespace ConsertoDeLivro.Controllers {
                 bool cpf = false;
                 bool celular = false;
                 foreach (var item in userDb) {
-                    if (email) {
-                        email = item.Email == usuario.Email ? true : false;
-                        if (email) { ViewBag.EmailDuplicado = "Esse Email já está em uso."; }
-                    }
+                    if (usuario.UsuarioID != item.UsuarioID) {
+                        if (!email) {
+                            email = item.Email == usuario.Email ? true : false;
+                            if (email) { ViewBag.EmailDuplicado = "Esse Email já está em uso."; }
+                        }
 
-                    if (cpf) {
-                        cpf = item.CPF == usuario.CPF ? true : false;
-                        if (cpf) { ViewBag.CPFDuplicado = "Esse CPF já está em uso."; }
-                    }
+                        if (!cpf) {
+                            cpf = item.CPF == usuario.CPF ? true : false;
+                            if (cpf) { ViewBag.CPFDuplicado = "Esse CPF já está em uso."; }
+                        }
 
-                    if (celular) {
-                        celular = item.Celular == usuario.Celular ? true : false;
-                        if (celular) { ViewBag.CelularDuplicado = "Esse numero de celular já está sendo usado."; }
+                        if (!celular) {
+                            celular = item.Celular == usuario.Celular ? true : false;
+                            if (celular) { ViewBag.CelularDuplicado = "Esse numero de celular já está sendo usado."; }
+                        }
                     }
                 }
                 #endregion

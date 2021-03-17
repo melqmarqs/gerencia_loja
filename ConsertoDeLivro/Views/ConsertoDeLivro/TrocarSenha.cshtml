@@ -19,6 +19,7 @@
         <br />
     </div>
     <div id="divSenha" style="display: none">
+        <label>Digite uma senha de 6 a 13 caracteres:</label>
         <div>
             <input type="password" placeholder="Digite sua nova senha" name="priSenha" />
         </div>
@@ -26,11 +27,12 @@
         <div>
             <input type="password" placeholder="Confirme sua senha" name="secSenha" />
         </div>
+        <label class="msgErro" style="display: none">Sua senha está fora do padrão.</label>
         <br />
     </div>
     <div class="divBtns">
         <a href="@Url.Action("Login", "ConsertoDeLivro")">Voltar</a>
         <a href="#" onclick="trocarSenha()" id="continuar">Continuar</a>
-        <a href="@Url.Action("TrocarSenha", "ConsertoDeLivro")" style="display: none;" id="updtSenha">Trocar senha</a>
+        <a href="#" onclick="confirmar()" style="display: none;" id="updtSenha">Trocar senha</a>
     </div>
 }

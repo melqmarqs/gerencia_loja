@@ -12,7 +12,7 @@
         <hr />
         @Html.HiddenFor(dados => dados.UsuarioID)
         <div class="divCorpo">
-            <div>
+            <div class="limitarTam">
                 @Html.LabelFor(dados => dados.Nome)
                 @Html.EditorFor(dados => dados.Nome)
                 @Html.ValidationMessageFor(dados => dados.Nome, "", new { @class = "text-danger " })
@@ -24,13 +24,13 @@
             </div>
         </div>
         <div class="divCorpo">
-            <div>
+            <div class="limitarTam">
                 @Html.LabelFor(model => model.Celular)
                 @Html.EditorFor(model => model.Celular)
                 @Html.ValidationMessageFor(model => model.Celular, "", new { @class = "text-danger" })
                 <span class="text-danger">@ViewBag.CelularDuplicado</span>
             </div>
-            <div>
+            <div class="limitarTam">
                 @Html.LabelFor(model => model.CPF)
                 @Html.EditorFor(model => model.CPF)
                 @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
@@ -75,13 +75,13 @@
             </div>
         </div>
         <div class="divCorpo">
-            <div>
+            <div class="limitarTam">
                 @Html.LabelFor(model => model.Email)
                 @Html.EditorFor(model => model.Email)
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 <span class="text-danger">@ViewBag.EmailDuplicado</span>
             </div>
-            <div>
+            <div class="limitarTam">
                 @Html.LabelFor(model => model.Senha)
                 @Html.PasswordFor(model => model.Senha)
                 @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })

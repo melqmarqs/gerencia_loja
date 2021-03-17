@@ -8,16 +8,14 @@
 <label class="lblTitulo">@ViewBag.Title</label>
 @using (Html.BeginForm()) {
     <br />
+    <label>@TempData["userNome"]</label>
     <div>
-        @*<label>Email</label>*@
-        <input type="text" placeholder="Email" id="Email" name="Email" />
+        <input type="text" placeholder="Email" id="Email" name="Email" value="@TempData["userEmail"]" />
     </div>
     <br />
     <div>
-        @*<label>Senha</label>*@
-        @*@Html.PasswordFor(m => m.Senha, htmlAttributes: new { @placeholder="Senha" })*@
         <input type="password" placeholder="Senha" name="Senha" />
-        <span class="msgErro">@ViewBag.MsgErro</span>
+        <label class="msgErro">@ViewBag.MsgErro</label>
     </div>
     <br />
     <div>

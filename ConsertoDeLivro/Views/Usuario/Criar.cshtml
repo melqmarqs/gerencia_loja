@@ -16,7 +16,7 @@
         <label class="lblTitulo">@ViewBag.Title</label>
         <hr />
         <div class="divCorpo">
-            <div>
+            <div class="limitarTam">
                 @Html.LabelFor(model => model.Nome)
                 @Html.EditorFor(model => model.Nome)
                 @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
@@ -24,17 +24,16 @@
             <div>
                 @Html.LabelFor(model => model.UltimoNome)
                 @Html.EditorFor(model => model.UltimoNome)
-                @Html.ValidationMessageFor(model => model.UltimoNome, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="divCorpo">
-            <div>
+            <div class="limitarTam">
                 @Html.LabelFor(model => model.Celular)
                 @Html.EditorFor(model => model.Celular)
                 @Html.ValidationMessageFor(model => model.Celular, "", new { @class = "text-danger" })
                 <span class="text-danger">@ViewBag.CelularDuplicado</span>
             </div>
-            <div>
+            <div class="limitarTam">
                 @Html.LabelFor(model => model.CPF)
                 @Html.EditorFor(model => model.CPF)
                 @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
@@ -79,13 +78,13 @@
             </div>
         </div>
         <div class="divCorpo">
-            <div>
+            <div class="limitarTam">
                 @Html.LabelFor(model => model.Email)
                 @Html.EditorFor(model => model.Email)
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 <span class="text-danger">@ViewBag.EmailDuplicado</span>
             </div>
-            <div>
+            <div class="limitarTam">
                 @Html.LabelFor(model => model.Senha)
                 @Html.PasswordFor(model => model.Senha)
                 @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })

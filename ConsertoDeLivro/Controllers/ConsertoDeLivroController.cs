@@ -53,7 +53,15 @@ namespace ConsertoDeLivro.Controllers {
         }
 
         [HttpPost]
-        public ActionResult TrocarSenha(Usuario usuario) {
+        public ActionResult TrocarSenha(string cpf, string email, string senha) {
+            if (cpf != null && email != null && senha != null) {
+                var user = db.Usuarios.First(User => User.Email == email && User.CPF == cpf);
+                if (user != null) {
+                    user.Senha = senha;
+                    db.SaveChanges();
+                    return RedirectToAction("Login");
+                }
+            }
             return View();
         }
     }

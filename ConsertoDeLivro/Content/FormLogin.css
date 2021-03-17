@@ -31,6 +31,7 @@ div {
 }
 
 .msgErro {
+    margin: 5px 0px 0px 0px;
     color: #FF0000;
     font-size: 0.9em;
     width: 280px;
