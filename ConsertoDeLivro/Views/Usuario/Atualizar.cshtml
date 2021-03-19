@@ -70,7 +70,6 @@
             </div>
             <div>
                 @Html.LabelFor(dados => dados.Estado)
-                @*@Html.TextBoxFor(dados => dados.Estado)*@
                 @Html.DropDownList("EstadoID", null, "", new { @heigth = "20" })
             </div>
         </div>
@@ -89,14 +88,21 @@
         </div>
         <hr />
         <div class="divDev">
-            <div>
-                <label>Administrador:</label>
-                @Html.EditorFor(dados => dados.Adm)
-            </div>
-            <div>
-                <label>Desenvolvedor:</label>
-                @Html.EditorFor(dados => dados.Dev)
-            </div>
+            @if (Model.Adm || Model.Dev) {
+                <div>
+                    <label>Administrador:</label>
+                    @Html.EditorFor(dados => dados.Adm)
+                </div>
+
+            }
+
+            @if (Model.Dev) {
+                <div>
+                    <label>Desenvolvedor:</label>
+                    @Html.EditorFor(dados => dados.Dev)
+                </div>
+
+            }
         </div>
         <hr />
         <div class="divBtns">

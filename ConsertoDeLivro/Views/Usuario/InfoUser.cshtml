@@ -45,23 +45,26 @@
             @Html.LabelFor(user => user.Estado):
             <span>@Model.Estado.Nome</span>
         </div>
-        @*<p></p>*@
-        <div>
-            <label>Administrador</label>:
-            @if (Model.Adm) {
-                <span>Sim</span>
-            } else {
-                <span>Não</span>
-            }
-        </div>
-        <div>
-            <label>Desenvolvedor</label>:
-            @if (Model.Dev) {
-                <span>Sim</span>
-            } else {
-                <span>Não</span>
-            }
-        </div>
+        @if (Model.Adm || Model.Dev) {
+            <div>
+                <label>Administrador</label>:
+                @if (Model.Adm) {
+                    <span>Sim</span>
+                } else {
+                    <span>Não</span>
+                }
+            </div>
+        }
+        @if (Model.Dev) {
+            <div>
+                <label>Desenvolvedor</label>:
+                @if (Model.Dev) {
+                    <span>Sim</span>
+                } else {
+                    <span>Não</span>
+                }
+            </div>
+        }
         <hr />
         <div class="divBtns">
             @Html.ActionLink("Alterar dados", "Atualizar", "Usuario", new { id = Model.UsuarioID }, new { @class = "btn btn-success" })

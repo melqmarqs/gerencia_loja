@@ -118,7 +118,7 @@ namespace ConsertoDeLivro.Controllers {
                 if (usuario.CPF.Contains("-")) usuario.CPF = usuario.CPF.Replace("-", "");
 
                 #region Verificando se há duplicidade no CPF, no numero do celular ou no Email
-                var userDb = db.Usuarios.ToList();
+                var userDb = db.Usuarios.AsNoTracking().ToList();
                 bool email = false;
                 bool cpf = false;
                 bool celular = false;
@@ -149,13 +149,14 @@ namespace ConsertoDeLivro.Controllers {
                     return View(usuario);
                 }
 
+                Usuario usuarioSessao = Session["Usuario"] as Usuario;
 
                 db.Entry(usuario).State = EntityState.Modified;
                 db.SaveChanges();
-                if ((Session["Usuario"] as Usuario).Adm) {
-                    return RedirectToAction("Index", "ConsertoDeLivro");
-                } else {
+                if (usuarioSessao.Adm) {
                     return RedirectToAction("Lista");
+                } else {
+                    return RedirectToAction("InfoUser", "Usuario", new { id = usuarioSessao.UsuarioID });
                 }
             }
 
