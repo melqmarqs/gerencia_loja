@@ -59,6 +59,10 @@ function confirmar() {
                 data: { cpf: cpf, email: email, senha: senha },
                 success(data) {
                     console.log('dados enviados');
+                    bootbox.alert('Sua senha foi alterada com sucesso!');
+                    setTimeout(function () {
+                        window.location.href = '/ConsertoDeLivro/Login'
+                    }, 3000 );
                 },
                 error(e) {
                     alert('Erro na conexão');

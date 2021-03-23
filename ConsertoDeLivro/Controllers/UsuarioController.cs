@@ -53,17 +53,17 @@ namespace ConsertoDeLivro.Controllers {
                 bool celular = false;
                 foreach (var item in userDb) {
                     if (email) {
-                        email = item.Email == usuario.Email ? true : false;
+                        email = item.Email == usuario.Email;
                         if (email) { ViewBag.EmailDuplicado = "Esse Email já está em uso."; }
                     }
 
                     if (cpf) {
-                        cpf = item.CPF == usuario.CPF ? true : false;
+                        cpf = item.CPF == usuario.CPF;
                         if (cpf) { ViewBag.CPFDuplicado = "Esse CPF já está em uso."; }
                     }
 
                     if (celular) {
-                        celular = item.Celular == usuario.Celular ? true : false;
+                        celular = item.Celular == usuario.Celular;
                         if (celular) { ViewBag.CelularDuplicado = "Esse numero de celular já está sendo usado."; }
                     }
                 }
@@ -125,17 +125,17 @@ namespace ConsertoDeLivro.Controllers {
                 foreach (var item in userDb) {
                     if (usuario.UsuarioID != item.UsuarioID) {
                         if (!email) {
-                            email = item.Email == usuario.Email ? true : false;
+                            email = item.Email == usuario.Email;
                             if (email) { ViewBag.EmailDuplicado = "Esse Email já está em uso."; }
                         }
 
                         if (!cpf) {
-                            cpf = item.CPF == usuario.CPF ? true : false;
+                            cpf = item.CPF == usuario.CPF;
                             if (cpf) { ViewBag.CPFDuplicado = "Esse CPF já está em uso."; }
                         }
 
                         if (!celular) {
-                            celular = item.Celular == usuario.Celular ? true : false;
+                            celular = item.Celular == usuario.Celular;
                             if (celular) { ViewBag.CelularDuplicado = "Esse numero de celular já está sendo usado."; }
                         }
                     }
