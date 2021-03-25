@@ -22,7 +22,6 @@ namespace ConsertoDeLivro.Controllers
             return View(pedidos.ToList());
         }
 
-        [Authorize]
         [HttpGet]
         public ActionResult CriarNovoPedido() {
             ViewBag.MaterialID = new SelectList(db.Materiais, "Id", "Nome");

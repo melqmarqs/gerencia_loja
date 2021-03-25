@@ -50,8 +50,14 @@
 
         <hr />
         <div class="divBtns">
-            <input type="submit" value="Fazer pedido" class="btn btn-success" />
-            @Html.ActionLink("Cancelar", "Index", "ConsertoDeLivro", null, new { @class="btn btn-danger" })
+            @if (usuario != null) {
+                <input type="submit" value="Fazer pedido" class="btn btn-success" />
+            } else {
+                TempData["Orcamento"] = Model;
+                @Html.ActionLink("Criar uma conta", "Criar", "Usuario", null, new { @class = "btn btn-success" })
+            }
+
+            @Html.ActionLink("Cancelar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-danger" })
         </div>
     </div>
 }
