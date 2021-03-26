@@ -1,5 +1,4 @@
 ﻿@using ConsertoDeLivro.Models;
-@using System.Web.Optimization;
 @model ConsertoDeLivro.Models.Usuario
 
 
@@ -8,7 +7,6 @@
     Usuario usuario = Session["Usuario"] as Usuario;
 }
 
-@Scripts.Render("~/Scripts/cep.js")
 <link href="~/Content/FormsTelas.css" rel="stylesheet" type="text/css" />
 
 @using (Html.BeginForm()) {

@@ -201,8 +201,9 @@ namespace ConsertoDeLivro.Controllers {
 
         [HttpGet]
         [Authorize]
-        public ActionResult InfoUser(int id) {
-            Usuario usuario = db.Usuarios.Find(id);
+        public ActionResult InfoUser() {
+            int userId = (Session["Usuario"] as Usuario).UsuarioID;
+            Usuario usuario = db.Usuarios.Find(userId);
             usuario.Estado = new Estado();
             usuario.Estado = db.Estados.Find(usuario.EstadoID);
             return View(usuario);

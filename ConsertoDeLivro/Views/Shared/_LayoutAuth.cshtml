@@ -3,15 +3,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="icon" href="~/Images/livros.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Mega&family=Roboto&display=swap" rel="stylesheet">
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/FormLogin.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
-    <script src="~/Scripts/jquery-3.4.1.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/bootbox.js"></script>
-    <script src="~/Scripts/bumbleblee.js"></script>
+    @Styles.Render("~/FormLogin/css")
+    @Scripts.Render("~/bundles/js")
+    @Scripts.Render("~/bumbleblee/js")
 </head>
 <body>
     <div>

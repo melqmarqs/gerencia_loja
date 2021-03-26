@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ConsertoDeLivro.App_Start;
+using System.Web.Optimization;
 
 namespace ConsertoDeLivro
 {
@@ -13,6 +15,7 @@ namespace ConsertoDeLivro
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBudles(BundleTable.Bundles);
         }
     }
 }
