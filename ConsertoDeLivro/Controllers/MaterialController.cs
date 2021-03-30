@@ -55,7 +55,7 @@ namespace ConsertoDeLivro.Controllers {
 
         [HttpPost]
         [Authorize]
-        public ActionResult AtualizaMaterial(Material material) {
+        public ActionResult AtualizarMaterial(Material material) {
             if (!ModelState.IsValid) {
                 ViewBag.Erro = "Por favor, preencha os campos corretamente.";
                 return View(material);

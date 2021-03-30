@@ -3,9 +3,11 @@
     ViewBag.Title = "Usuários";
 }
 
+@Styles.Render("~/Content/FormsTelas.css")
+
 <h2>@ViewBag.Title</h2>
-<table style="width: 100%;">
-    <tr style="border-bottom: 1px solid black">
+<table>
+    <tr class="linhaTitulo">
         <th>@Html.DisplayNameFor(usr => usr.UsuarioID)</th>
         <th>@Html.DisplayNameFor(usr => usr.Nome)</th>
         <th>@Html.DisplayNameFor(usr => usr.Adm)</th>
@@ -16,7 +18,7 @@
         <th>Opções</th>
     </tr>
     @foreach (var item in Model) {
-        <tr style="border-bottom: 1px solid gray;">
+        <tr class="linhaConteudo">
             <td>@Html.DisplayFor(modelItem => item.UsuarioID)</td>
             <td>@Html.DisplayFor(modelItem => item.Nome)</td>
             <td>

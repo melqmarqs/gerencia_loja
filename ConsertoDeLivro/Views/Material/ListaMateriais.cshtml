@@ -3,13 +3,13 @@
     ViewBag.Title = "Lista de Materiais";
 }
 
+@Styles.Render("~/Content/FormsTelas.css")
+
 <h2>@ViewBag.Title</h2>
 
 @if (Model != null) {
-
-
-    <table border="1">
-        <tr>
+    <table>
+        <tr class="linhaTitulo">
             <th>
                 <span>ID</span>
             </th>
@@ -20,11 +20,11 @@
                 <span>Descrição</span>
             </th>
             <th>
-                <span></span>
+                <span>Opções</span>
             </th>
         </tr>
         @foreach (var item in Model) {
-            <tr>
+            <tr class="linhaConteudo">
                 <td>
                     @Html.DisplayFor(m => item.Id)
                 </td>
@@ -35,12 +35,15 @@
                     @Html.DisplayFor(m => item.Descricao)
                 </td>
                 <td>
-                    <a href="#">Editar</a> |
+                    <a href="@Url.Action("AtualizarMaterial", "Material", new { id = item.Id })">Editar</a> |
                     @Html.ActionLink("Apagar", "ApagarMaterial", "Material", new { id = item.Id }, null)
                 </td>
             </tr>
         }
     </table>
 }
-@Html.ActionLink("Voltar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-warning" })
-@Html.ActionLink("Novo material", "CriarMaterial", "Material", null, new { @class = "btn btn-success" })
+<br />
+<div>
+    @Html.ActionLink("Voltar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Novo material", "CriarMaterial", "Material", null, new { @class = "btn btn-success" })
+</div>

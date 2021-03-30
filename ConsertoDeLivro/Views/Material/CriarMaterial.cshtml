@@ -13,18 +13,21 @@
             <div>
                 @Html.LabelFor(model => model.Codigo)
                 @Html.EditorFor(model => model.Codigo)
+                @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="divCorpo">
             <div>
                 @Html.LabelFor(model => model.Nome)
                 @Html.EditorFor(model => model.Nome)
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="divCorpo">
             <div>
                 @Html.LabelFor(model => model.Descricao)
-                @Html.EditorFor(model => model.Descricao)
+                @Html.TextAreaFor(model => model.Descricao, new { @cols = "50", @rows = "6", @maxlength = "200" })
+                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
             </div>
         </div>
         <hr />

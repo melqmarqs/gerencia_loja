@@ -12,7 +12,7 @@
         @Html.HiddenFor(model => model.Id)
         <div class="divCorpo">
             <div>
-                @Html.LabelFor(model => model.Codigo)
+                <label>Codigo do produto</label>
                 @Html.EditorFor(model => model.Codigo)
             </div>
         </div>
@@ -25,12 +25,12 @@
         <div class="divCorpo">
             <div>
                 @Html.LabelFor(model => model.Descricao)
-                @Html.EditorFor(model => model.Descricao)
+                @Html.TextAreaFor(model => model.Descricao, new { @cols = "50", @rows = "6", @maxlength = "200" })
             </div>
         </div>
         <hr />
         <div class="divBtns">
-            <input type="button" value="Atualizar material" class="btn btn-success" />
+            <input type="submit" value="Atualizar material" class="btn btn-success" />
             @Html.ActionLink("Cancelar", "ListaMateriais", "Material")
         </div>
     </div>

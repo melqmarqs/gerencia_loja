@@ -62,3 +62,15 @@ select {
     overflow-wrap: break-word;
     max-width: 192px;
 }
+
+table {
+    width: 100%;
+}
+
+.linhaTitulo {
+    border-bottom: 1px solid black;
+}
+
+.linhaConteudo {
+    border-bottom: 1px solid gray;
+}
