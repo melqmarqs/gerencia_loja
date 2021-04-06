@@ -3,6 +3,9 @@
     ViewBag.Title = DateTime.Now.ToString("dddd");
 }
 
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css" />
+@Scripts.Render("~/bundles/js")
+
 <style>
     .divOrc {
         height: 100%;
@@ -25,11 +28,11 @@
         border: 1px solid darkgreen;
     }
 
-    .aOrcamento:hover {
-        text-decoration: none;
-        color: darkgreen;
-        background-color: rgba(60, 255, 60, 0.2);
-    }
+        .aOrcamento:hover {
+            text-decoration: none;
+            color: darkgreen;
+            background-color: rgba(60, 255, 60, 0.2);
+        }
 
     .carousel-item img {
         height: 500px;

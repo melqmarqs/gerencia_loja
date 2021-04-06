@@ -10,22 +10,12 @@ namespace ConsertoDeLivro.App_Start {
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                 "~/Scripts/modernizr-{version}.js",
+                "~/Scripts/jquery-{version}.slim.min.js",
+                "~/Scripts/jquery-{version}.min.js",
                 "~/Scripts/jquery-{version}.js",
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/bootbox.js"
-                ));
-
-            bundles.Add(new StyleBundle("~/FormLogin/css").Include(
-                "~/Content/FormLogin.css",
-                "~/Content/bootstrap.min.css"
-                ));
-
-            bundles.Add(new ScriptBundle("~/bumbleblee/js").Include(
-                "~/Scripts/bumbleblee.js"
-                ));
-
-            bundles.Add(new ScriptBundle("~/cep/js").Include(
-                "~/Scripts/cep.js"
+                "~/Scripts/bootstrap.min.js",
+                "~/Scripts/bootbox.js",
+                "~/Scripts/popper.min.js"
                 ));
         }
     }

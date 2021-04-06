@@ -13,7 +13,7 @@
                 return;
             }
 
-            //mudando o focus para a textbox de numero
+            //mudando o foco para a textbox de numero
             $('input[name="Numero"]').focus();
             //preenchendo os campos com os dados da consulta
             $('input[name="Logradouro"]').val(result.address);
