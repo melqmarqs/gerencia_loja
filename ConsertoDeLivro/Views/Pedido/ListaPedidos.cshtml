@@ -38,9 +38,9 @@
             </tr>
         }
     </table>
-} else if (usuario != null && usuario.Adm) {
+} else if (usuario != null && (usuario.Adm || usuario.Dev)) {
     <h3 class="text-danger">Ainda não foram feitos pedidos.</h3>
-} else if (usuario != null && usuario.Dev){
+} else {
     <h3 class="text-danger">Você ainda não fez nenhum pedido</h3>
     <a href="/Pedido/CriarNovoPedido">Faça seu primeiro pedido</a>
 }

@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja - @ViewBag.Title</title>
     <link rel="icon" href="~/Images/livros.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/js")
 </head>
@@ -29,7 +29,7 @@
                         @Html.ActionLink("Materiais", "ListaMateriais", "Material")
                     }
                     if (usuario.Dev) {
-                        @Html.ActionLink("Pedidos", "ListaPedidos", "Pedido", new { id = 0 }, null)
+                        @Html.ActionLink("Pedidos", "ListaPedidos", "Pedido")
                     }
                 }
             }
@@ -38,22 +38,40 @@
             @{
                 if (usuario != null) {
                     <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Bem-vindo, @usuario.Nome <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a href="@Url.Action("CriarNovoPedido", "Pedido")">
-                                &nbsp;Novo pedido
-                            </a><br />
-                            <a href="@Url.Action("ListaPedidos", "Pedido", new { id = usuario.UsuarioID })">
-                                &nbsp;Meus pedidos
-                            </a><br />
-                            <a href="@Url.Action("InfoUser", "Usuario")">
-                                &nbsp;Meus dados
-                            </a><br />
-                            <hr />
-                            <a href="@Url.Action("Sair", "ConsertoDeLivro")"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sair</a>
-                        </div>
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Bem-vindo, @usuario.Nome <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="@Url.Action("CriarNovoPedido", "Pedido")">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                            &nbsp;Novo pedido
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("ListaPedidos", "Pedido")">
+                                            <span class="glyphicon glyphicon-th-list"></span>
+                                            &nbsp;Meus pedidos
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("InfoUser", "Usuario")">
+                                            <span class="glyphicon glyphicon-user"></span>
+                                            &nbsp;Meus dados
+                                        </a>
+                                    </li>
+                                    <li class="divider" role="separator"></li>
+                                    <li>
+                                        <a href="@Url.Action("Sair", "ConsertoDeLivro")">
+                                            <span class="glyphicon glyphicon-log-out"></span>
+                                            &nbsp;Sair
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 } else {
                     @Html.ActionLink("Entrar", "Login", "ConsertoDeLivro")
@@ -70,8 +88,22 @@
             <p>&copy; @DateTime.Now.Year - Conserto e Personalização de Livros</p>
         </footer>
     </div>
+    <script>
+        //$('div.dropdown').mouseenter(function () {
+        //    $('div.dropdown-menu').css('display', 'block');
+        //})
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+        //$('div.dropdown').mouseup(function () {
+        //    $('div.dropdown-menu').css('display', 'block');
+        //})
+
+        $('div.dropdown').mousedown(function () {
+            var ddpmenu = $('div.dropdown-menu');
+            if (ddpmenu.css('display') == 'block')
+                $('div.dropdown-menu').css('display', 'none');
+            else
+                $('div.dropdown-menu').css('display', 'block');
+        })
+    </script>
 </body>
 </html>

@@ -45,10 +45,12 @@ html {
     margin: 5px 7.5px;
     color: black !important;
     text-decoration: none !important;
+    background-color: transparent !important;
 }
 
 .divTop a:hover {
     font-weight: 600 !important;
+    background-color: transparent !important;
 }
 
 .btnsMenu {

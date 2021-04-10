@@ -9,13 +9,10 @@ namespace ConsertoDeLivro.App_Start {
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                "~/Scripts/modernizr-{version}.js",
-                "~/Scripts/jquery-{version}.slim.min.js",
-                "~/Scripts/jquery-{version}.min.js",
-                "~/Scripts/jquery-{version}.js",
-                "~/Scripts/bootstrap.min.js",
-                "~/Scripts/bootbox.js",
-                "~/Scripts/popper.min.js"
+                "~/Scripts/jquery-3.4.1.min.js",
+                "~/Scripts/popper.js",
+                "~/Scripts/bootstrap.js",
+                "~/Scripts/bootbox.js"
                 ));
         }
     }
