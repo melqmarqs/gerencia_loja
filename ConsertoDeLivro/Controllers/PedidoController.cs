@@ -43,7 +43,7 @@ namespace ConsertoDeLivro.Controllers {
             pedido.Feito = false;
             pedido.UsuarioID = (Session["Usuario"] as Usuario).UsuarioID;
             pedido.DataPedido = DateTime.Now.ToString("dd/MM/yyyy H:mm:ss");
-            pedido.Valor = 0.0F;
+            pedido.Valor = "0";
 
             db.Pedidos.Add(pedido);
             db.SaveChanges();

@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_LayoutAuth.cshtml";
 }
 
-@*<label class="lblTitulo">Dados</label>*@
 @using (Html.BeginForm()) {
     <br />
     <div id="divCpfEmail">
@@ -33,6 +32,6 @@
     <div class="divBtns">
         <a href="@Url.Action("Login", "ConsertoDeLivro")">Voltar</a>
         <a href="#" onclick="trocarSenha()" id="continuar">Continuar</a>
-        <a href="#" onclick="confirmar()" style="display: none;" id="updtSenha">Trocar senha</a>
+        <a href="#" onclick="confirmarSenha()" style="display: none;" id="updtSenha">Trocar senha</a>
     </div>
 }

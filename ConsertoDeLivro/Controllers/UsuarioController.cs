@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.Script.Serialization;
 
 namespace ConsertoDeLivro.Controllers {
     public class UsuarioController : Controller {
@@ -32,7 +33,18 @@ namespace ConsertoDeLivro.Controllers {
         }
 
         public ActionResult ListaUsuarios() {
-            var usuarios = db.Usuarios.ToList();
+            var userLogado = Session["Usuario"] as Usuario;
+            List<Usuario> usuarios = new List<Usuario>();
+            if (userLogado != null) {
+                if (userLogado.Dev)
+                    usuarios = db.Usuarios.ToList();
+                else if (userLogado.Adm)
+                    usuarios = db.Usuarios.Where(user => !user.Dev).ToList();
+                else
+                    return RedirectToAction("Index", "ConsertoDeLivro");
+
+                return Json(usuarios, JsonRequestBehavior.AllowGet);
+            }
             return Json(usuarios, JsonRequestBehavior.AllowGet);
         }
 
@@ -59,22 +71,22 @@ namespace ConsertoDeLivro.Controllers {
                 #endregion
 
                 #region Verificando se há duplicidade no CPF, no numero do celular ou no Email
-                var userDb = db.Usuarios.ToList();
+                var usuariosBD = db.Usuarios.ToList();
                 bool email = false;
                 bool cpf = false;
                 bool celular = false;
-                foreach (var item in userDb) {
-                    if (email) {
+                foreach (var item in usuariosBD) {
+                    if (!email) {
                         email = item.Email == usuario.Email;
                         if (email) { ViewBag.EmailDuplicado = "Esse Email já está em uso."; }
                     }
 
-                    if (cpf) {
+                    if (!cpf) {
                         cpf = item.CPF == usuario.CPF;
                         if (cpf) { ViewBag.CPFDuplicado = "Esse CPF já está em uso."; }
                     }
 
-                    if (celular) {
+                    if (!celular) {
                         celular = item.Celular == usuario.Celular;
                         if (celular) { ViewBag.CelularDuplicado = "Esse numero de celular já está sendo usado."; }
                     }
@@ -108,9 +120,17 @@ namespace ConsertoDeLivro.Controllers {
 
         [Authorize]
         public ActionResult Atualizar(int id) {
-            Usuario usuario = db.Usuarios.Find(id);
-            ViewBag.EstadoID = new SelectList(db.Estados, "EstadoID", "UF", usuario.EstadoID);
-            return View(usuario);
+            Usuario SessionUsuario = Session["Usuario"] as Usuario;
+            
+            if (SessionUsuario.Adm || SessionUsuario.Dev) {
+                Usuario usuario = db.Usuarios.Find(id);
+                ViewBag.EstadoID = new SelectList(db.Estados, "EstadoID", "UF", usuario.EstadoID);
+                return View(usuario);
+            } else {
+                ViewBag.EstadoID = new SelectList(db.Estados, "EstadoID", "UF", SessionUsuario.EstadoID);
+                return View(SessionUsuario);
+            }
+
         }
 
         [HttpPost]
@@ -130,11 +150,11 @@ namespace ConsertoDeLivro.Controllers {
                 if (usuario.CPF.Contains("-")) usuario.CPF = usuario.CPF.Replace("-", "");
 
                 #region Verificando se há duplicidade no CPF, no numero do celular ou no Email
-                var userDb = db.Usuarios.AsNoTracking().ToList();
+                var usuariosBD = db.Usuarios.AsNoTracking().ToList();
                 bool email = false;
                 bool cpf = false;
                 bool celular = false;
-                foreach (var item in userDb) {
+                foreach (var item in usuariosBD) {
                     if (usuario.UsuarioID != item.UsuarioID) {
                         if (!email) {
                             email = item.Email == usuario.Email;
@@ -176,15 +196,9 @@ namespace ConsertoDeLivro.Controllers {
             return View(usuario);
         }
 
+        [HttpPost]
         [Authorize]
-        public ActionResult Excluir(int id) {
-            Usuario usuario = db.Usuarios.Find(id);
-            return View(usuario);
-        }
-
-        [HttpPost, ActionName("Excluir")]
-        [Authorize]
-        public ActionResult ExcluirConfirmacao(int id) {
+        public String ExcluirConfirmacao(int id) {
             Usuario usuarioBd = db.Usuarios.Find(id);
 
             db.Usuarios.Remove(usuarioBd);
@@ -196,7 +210,9 @@ namespace ConsertoDeLivro.Controllers {
                 Session.Abandon();
             }
 
-            return RedirectToAction("Lista");
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            return serializer.Serialize("sucesso");
         }
 
         [HttpGet]

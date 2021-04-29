@@ -5,64 +5,63 @@
 
 <link href="~/Content/FormsTelas.css" type="text/css" rel="stylesheet" />
 
-@using (Html.BeginForm()) {
-    <div class="divForm">
-        <label class="lblTitulo">@ViewBag.Title</label>
+
+<div class="divForm">
+    <label class="lblTitulo">@ViewBag.Title</label>
+    <hr />
+    <div class="divColumn">
+        <div class="margemEsquerda">
+            @Html.LabelFor(user => user.Nome):&nbsp;
+            <span>@Model.Nome</span>
+        </div>
+        <div class="margemEsquerda">
+            @Html.LabelFor(user => user.UltimoNome):&nbsp;
+            <span>@Model.UltimoNome</span>
+        </div>
+        <div class="margemEsquerda">
+            @Html.LabelFor(user => user.CPF):&nbsp;
+            <span>@Model.CPF</span>
+        </div>
+        <div class="margemEsquerda">
+            @Html.LabelFor(user => user.Celular):&nbsp;
+            <span>@Model.Celular</span>
+        </div>
+        <div class="margemEsquerda">
+            @Html.LabelFor(user => user.Email):&nbsp;
+            <span>@Model.Email</span>
+        </div>
+        <div class="margemEsquerda">
+            <label>Endereço:&nbsp;</label>
+            <span>@Model.Logradouro, @Model.Numero - @Model.Bairro</span>
+        </div>
+        <div class="margemEsquerda">
+            @Html.LabelFor(user => user.Cidade):&nbsp;
+            <span>@Model.Cidade</span>
+        </div>
+        <div class="margemEsquerda">
+            @Html.LabelFor(user => user.Estado):&nbsp;
+            <span>@Model.Estado</span>
+        </div>
+        <div class="margemEsquerda">
+            <label>Administrador</label>:&nbsp;
+            @if (Model.Adm) {
+                <span>Sim</span>
+            } else {
+                <span>Não</span>
+            }
+        </div>
+        <div class="margemEsquerda">
+            <label>Desenvolvedor</label>:&nbsp;
+            @if (Model.Dev) {
+                <span>Sim</span>
+            } else {
+                <span>Não</span>
+            }
+        </div>
         <hr />
-        <div class="divColumn">
-            <div>
-                @Html.LabelFor(user => user.Nome):
-                <span>@Model.Nome</span>
-            </div>
-            <div>
-                @Html.LabelFor(user => user.UltimoNome):
-                <span>@Model.UltimoNome</span>
-            </div>
-            <div>
-                @Html.LabelFor(user => user.CPF):
-                <span>@Model.CPF</span>
-            </div>
-            <div>
-                @Html.LabelFor(user => user.Celular):
-                <span>@Model.Celular</span>
-            </div>
-            <div>
-                @Html.LabelFor(user => user.Email):
-                <span>@Model.Email</span>
-            </div>
-            <div>
-                <label>Endereço:</label>
-                <span>@Model.Logradouro, @Model.Numero - @Model.Bairro</span>
-            </div>
-            <div>
-                @Html.LabelFor(user => user.Cidade):
-                <span>@Model.Cidade</span>
-            </div>
-            <div>
-                @Html.LabelFor(user => user.Estado):
-                <span>@Model.Estado</span>
-            </div>
-            <div>
-                <label>Administrador</label>:
-                @if (Model.Adm) {
-                    <span>Sim</span>
-                } else {
-                    <span>Não</span>
-                }
-            </div>
-            <div>
-                <label>Desenvolvedor</label>:
-                @if (Model.Dev) {
-                    <span>Sim</span>
-                } else {
-                    <span>Não</span>
-                }
-            </div>
-            <hr />
-            <div class="divBtns">
-                <input type="submit" value="Excluir" class="btn btn-success"/>
-                <a href="/ConsertoDeLivro/Index">Voltar</a>
-            </div>
+        <div class="divBtns">
+            <input type="submit" value="Excluir" class="btn btn-success" />
+            <a href="/ConsertoDeLivro/Index">Voltar</a>
         </div>
     </div>
-}
+</div>

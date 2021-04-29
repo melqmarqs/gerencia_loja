@@ -4,46 +4,53 @@
 }
 
 @Styles.Render("~/Content/FormsTelas.css")
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js" type="text/javascript"></script>
+
+<script src="~/Scripts/usuarios.js" type="text/javascript"></script>
 
 <h2>@ViewBag.Title</h2>
-<table>
-    <tr class="linhaTitulo">
-        <th>@Html.DisplayNameFor(usr => usr.UsuarioID)</th>
-        <th>@Html.DisplayNameFor(usr => usr.Nome)</th>
-        <th>@Html.DisplayNameFor(usr => usr.Adm)</th>
-        <th>@Html.DisplayNameFor(usr => usr.Dev)</th>
-        <th>@Html.DisplayNameFor(usr => usr.Email)</th>
-        <th>@Html.DisplayNameFor(usr => usr.CPF)</th>
-        <th>@Html.DisplayNameFor(usr => usr.Celular)</th>
-        <th>Opções</th>
-    </tr>
-    @foreach (var item in Model) {
-        <tr class="linhaConteudo">
-            <td>@Html.DisplayFor(modelItem => item.UsuarioID)</td>
-            <td>@Html.DisplayFor(modelItem => item.Nome)</td>
-            <td>
-                @if (item.Adm) {
-                    <span>Sim</span>
-                } else {
-                    <span>Não</span>
-                }
-            </td>
-            <td>
-                @if (item.Dev) {
-                    <span>Sim</span>
-                } else {
-                    <span>Não</span>
-                }
-            </td>
-            <td>@Html.DisplayFor(modelItem => item.Email)</td>
-            <td>@Html.DisplayFor(modelItem => item.CPF)</td>
-            <td>@Html.DisplayFor(modelItem => item.Celular)</td>
-            <td>
-                @Html.ActionLink("Editar", "Atualizar", new { id = item.UsuarioID }) |
-                @Html.ActionLink("Excluir", "Excluir", new { id = item.UsuarioID })
-            </td>
+<table id="tabelaUsuario" class="display" style="width: 100%">
+    <thead>
+        <tr class="linhaTitulo">
+            <th>@Html.DisplayNameFor(usr => usr.UsuarioID)</th>
+            <th>@Html.DisplayNameFor(usr => usr.Nome)</th>
+            <th>@Html.DisplayNameFor(usr => usr.Email)</th>
+            <th>@Html.DisplayNameFor(usr => usr.CPF)</th>
+            <th>@Html.DisplayNameFor(usr => usr.Celular)</th>
+            <th>@Html.DisplayNameFor(usr => usr.Adm)</th>
+            <th>@Html.DisplayNameFor(usr => usr.Dev)</th>
+            <th>Opções</th>
         </tr>
-    }
+    </thead>
+    <tbody></tbody>
+    @*@foreach (var item in Model) {
+            <tr class="linhaConteudo">
+                <td>@Html.DisplayFor(modelItem => item.UsuarioID)</td>
+                <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.CPF)</td>
+                <td>@Html.DisplayFor(modelItem => item.Celular)</td>
+                <td>
+                    @if (item.Adm) {
+                        <span>Sim</span>
+                    } else {
+                        <span>Não</span>
+                    }
+                </td>
+                <td>
+                    @if (item.Dev) {
+                        <span>Sim</span>
+                    } else {
+                        <span>Não</span>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Atualizar", new { id = item.UsuarioID }) |
+                    <a href="#" onclick="excluirUsuario(@item.UsuarioID);">Excluir</a>
+                </td>
+            </tr>
+        }*@
 </table>
 <br />
 @Html.ActionLink("Criar novo usuário", "Criar")

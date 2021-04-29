@@ -224,3 +224,5 @@ C:\Users\Melq Marqs\Desktop\Projetos\gerencia_loja\ConsertoDeLivro\obj\Debug\Con
 C:\Users\Melq Marqs\Desktop\Projetos\gerencia_loja\ConsertoDeLivro\obj\Debug\ConsertoDeLivro.csproj.CopyComplete
 C:\Users\Melq Marqs\Desktop\Projetos\gerencia_loja\ConsertoDeLivro\obj\Debug\ConsertoDeLivro.dll
 C:\Users\Melq Marqs\Desktop\Projetos\gerencia_loja\ConsertoDeLivro\obj\Debug\ConsertoDeLivro.pdb
+C:\Users\Melq Marqs\Desktop\Projetos\gerencia_loja\ConsertoDeLivro\obj\Debug\ConsertoDeLivro.Migrations.AddValorEmMaterial.resources
+C:\Users\Melq Marqs\Desktop\Projetos\gerencia_loja\ConsertoDeLivro\obj\Debug\ConsertoDeLivro.Migrations.FloatToString.resources

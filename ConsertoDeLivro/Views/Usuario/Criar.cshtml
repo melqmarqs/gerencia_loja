@@ -41,7 +41,6 @@
         </div>
         <div class="divCorpo">
             <div>
-                @*@Html.LabelFor(model => model.CEP)*@
                 <label>CEP&nbsp;<a href="https://buscacepinter.correios.com.br/app/endereco/index.php?t" class="aCep" target="_blank">Não sabe seu cep? Clique aqui</a></label>
                 @Html.EditorFor(model => model.CEP)
                 @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
@@ -72,8 +71,7 @@
             </div>
             <div>
                 @Html.LabelFor(model => model.Estado)
-                @*@Html.TextBoxFor(model => model.Estado)*@
-                @Html.DropDownList("EstadoID", null, "", new { @heigth = "20" })
+                @Html.DropDownList("EstadoID")
             </div>
         </div>
         <div class="divCorpo">

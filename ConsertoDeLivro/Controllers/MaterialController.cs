@@ -11,8 +11,12 @@ namespace ConsertoDeLivro.Controllers {
         ConsertoDeLivroContext db = new ConsertoDeLivroContext();
         // GET: Material
         public ActionResult ListaMateriais() {
+            return View();
+        }
+
+        public ActionResult Materiais() {
             var materiais = db.Materiais.ToList();
-            return View(materiais);
+            return Json(materiais, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

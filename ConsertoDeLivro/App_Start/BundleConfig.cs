@@ -9,7 +9,8 @@ namespace ConsertoDeLivro.App_Start {
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                "~/Scripts/jquery-3.4.1.min.js",
+                "~/Scripts/jquery-3.5.1.min.js",
+                "~/Scripts/DataTables/jquery.dataTables.min.js",
                 "~/Scripts/popper.js",
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/bootbox.js"

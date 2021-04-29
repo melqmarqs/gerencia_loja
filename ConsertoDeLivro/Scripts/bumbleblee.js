@@ -3,6 +3,10 @@ var email;
 var cpf;
 var senha;
 
+$(document).ready(function (){
+    
+})
+
 function trocarSenha() {
     email = $('input[name="Email"]').val();
     cpf = $('input[name="CPF"]').val();
@@ -18,7 +22,7 @@ function trocarSenha() {
                         if (value.Email == email && value.CPF == cpf) {
                             //Inputs
                             $('div[id="divCpfEmail"]').css('display', 'none');
-                            $('div[id="divSenha"]').css('display', 'block');
+                            $('div[id="divSenha"]').css('display', 'flex');
 
                             //Botoes
                             $('a[id="continuar"]').css('display', 'none');
@@ -29,10 +33,7 @@ function trocarSenha() {
                     });
 
                     if (!usuarioEncontrado) {
-                        bootbox.alert({
-                            message: 'Usuario não encontrado! <br>Os dados não pertencem a nenhum usuário cadastrado no sistema!',
-                            backdrop: true,
-                        });
+                        alert('Usuario não encontrado!\nOs dados não pertencem a nenhum usuário cadastrado no sistema!');
                     }
                 }
             },
@@ -46,7 +47,7 @@ function trocarSenha() {
     }
 }
 
-function confirmar() {
+function confirmarSenha() {
     var priSenha = $('input[name="priSenha"]').val();
     var secSenha = $('input[name="secSenha"]').val();
     if ((priSenha != null && secSenha != null) &&
@@ -59,13 +60,15 @@ function confirmar() {
                 data: { cpf: cpf, email: email, senha: senha },
                 success(data) {
                     console.log('dados enviados');
-                    bootbox.alert('Sua senha foi alterada com sucesso!');
-                    setTimeout(function () {
-                        window.location.href = '/ConsertoDeLivro/Login'
-                    }, 3000 );
+                    if (alert('Sua senha foi alterada com sucesso!')) {
+                        //nao é para vir aqui
+                        location.href = '/ConsertoDeLivro/Index';
+                    } else {
+                        window.location.href = '/ConsertoDeLivro/Login';
+                    }
                 },
                 error(e) {
-                    alert('Erro na conexão');
+                    alert('Erro na conexão!\nEntre em contato com o administrador do sistema.');
                 }
             });
         } else {
@@ -74,5 +77,41 @@ function confirmar() {
         }
     } else {
         alert('Atenção!\nPreencha os dados corretamente!')
+    }
+}
+
+function campoNumerico(key) {
+    //console.log(key.keyCode);
+
+    if ($('#ValorMetro').val().length >= 6) {
+        return false;
+    }
+
+    if ((key.keyCode < 48 || key.keyCode > 57) &&
+        (key.keyCode < 37 || key.keyCode > 40) &&
+        key.keyCode != 8) {
+        key.preventDefault();
+        return false;
+    }
+
+    if ((key.keyCode >= 48 && key.keyCode <= 57) || key.keyCode == 8)
+        conferirCampoValor(key);
+}
+
+function conferirCampoValor(key) {
+    var campoValor = $('#ValorMetro').val();
+    console.log('tamanho: ' + campoValor.length);
+    if (key.keyCode != 8) {
+        if (campoValor.length == 2) {
+            $('#ValorMetro').val(campoValor.slice(0, 1) + ',' + campoValor.slice(1));
+        }
+
+        if (campoValor.length == 4) {
+            $('#ValorMetro').val(campoValor.replace(',', '').slice(0, 2) + ',' + campoValor.slice(3));
+        }
+
+        if (campoValor.length == 5) {
+            $('#ValorMetro').val(campoValor.replace(',', '').slice(0, 3) + ',' + campoValor.slice(4));
+        }
     }
 }

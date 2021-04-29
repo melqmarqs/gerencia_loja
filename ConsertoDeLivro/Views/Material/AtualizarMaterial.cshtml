@@ -4,6 +4,7 @@
 }
 
 <link href="~/Content/FormsTelas.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/bumbleblee.js" type="text/javascript"></script>
 
 @using (Html.BeginForm()) {
     <div class="divForm">
@@ -20,6 +21,12 @@
             <div>
                 @Html.LabelFor(model => model.Nome)
                 @Html.EditorFor(model => model.Nome)
+            </div>
+        </div>
+        <div class="divCorpo">
+            <div>
+                <label>Valor (R$)</label>
+                @Html.TextBoxFor(model => model.ValorMetro, new { @onkeydown = "campoNumerico(event)", @maxlength = "6" })
             </div>
         </div>
         <div class="divCorpo">

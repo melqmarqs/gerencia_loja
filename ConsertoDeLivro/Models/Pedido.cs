@@ -11,11 +11,11 @@ namespace ConsertoDeLivro.Models {
 
         public virtual Usuario Usuario { get; set; }
 
-        public float Largura { get; set; }
+        public string Largura { get; set; }
 
-        public float Comprimento { get; set; }
+        public string Comprimento { get; set; }
 
-        public float Expessura { get; set; }
+        public string Expessura { get; set; }
 
         public int MaterialID { get; set; }
 
@@ -29,7 +29,7 @@ namespace ConsertoDeLivro.Models {
 
         public string DataPedido { get; set; }
 
-        public float Valor { get; set; }
+        public string Valor { get; set; }
 
         public string Descricao { get; set; }
     }

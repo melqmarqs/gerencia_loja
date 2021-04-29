@@ -12,6 +12,7 @@
     <link rel="icon" href="~/Images/livros.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet" />
+    @*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/js")
 </head>
@@ -26,9 +27,7 @@
                 if (usuario != null) {
                     if (usuario.Adm) {
                         @Html.ActionLink("Usuarios", "Lista", "Usuario")
-                        @Html.ActionLink("Materiais", "ListaMateriais", "Material")
-                    }
-                    if (usuario.Dev) {
+                        @Html.ActionLink("Materiais", "ListaMateriais", "Material", null, new { onclick = "material()" })
                         @Html.ActionLink("Pedidos", "ListaPedidos", "Pedido")
                     }
                 }
@@ -88,22 +87,5 @@
             <p>&copy; @DateTime.Now.Year - Conserto e Personalização de Livros</p>
         </footer>
     </div>
-    <script>
-        //$('div.dropdown').mouseenter(function () {
-        //    $('div.dropdown-menu').css('display', 'block');
-        //})
-
-        //$('div.dropdown').mouseup(function () {
-        //    $('div.dropdown-menu').css('display', 'block');
-        //})
-
-        $('div.dropdown').mousedown(function () {
-            var ddpmenu = $('div.dropdown-menu');
-            if (ddpmenu.css('display') == 'block')
-                $('div.dropdown-menu').css('display', 'none');
-            else
-                $('div.dropdown-menu').css('display', 'block');
-        })
-    </script>
 </body>
 </html>

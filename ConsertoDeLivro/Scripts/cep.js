@@ -36,85 +36,85 @@ function LimparTextBoxesEndereco() {
 function UFEstado(uf) {
     switch (uf) {
         case 'AC':
-            return 1;
+            return 0;
             break;
         case 'AL':
-            return 2;
+            return 1;
             break;
         case 'AP':
-            return 3;
+            return 2;
             break;
         case 'AM':
-            return 4;
+            return 3;
             break;
         case 'BA':
-            return 5;
+            return 4;
             break;
         case 'CE':
-            return 6;
+            return 5;
             break;
         case 'DF':
-            return 7;
+            return 6;
             break;
         case 'ES':
-            return 8;
+            return 7;
             break;
         case 'GO':
-            return 9;
+            return 8;
             break;
         case 'MA':
-            return 10;
+            return 9;
             break;
         case 'MT':
-            return 11;
+            return 10;
             break;
         case 'MS':
-            return 12;
+            return 11;
             break;
         case 'MG':
-            return 13;
+            return 12;
             break;
         case 'PA':
-            return 14;
+            return 13;
             break;
         case 'PB':
-            return 15;
+            return 14;
             break;
         case 'PR':
-            return 16;
+            return 15;
             break;
         case 'PE':
-            return 17;
+            return 16;
             break;
         case 'PI':
-            return 18;
+            return 17;
             break;
         case 'RJ':
-            return 19;
+            return 18;
             break;
         case 'RN':
-            return 20;
+            return 19;
             break;
         case 'RS':
-            return 21;
+            return 20;
             break;
         case 'RO':
-            return 22;
+            return 21;
             break;
         case 'RR':
-            return 23;
+            return 22;
             break;
         case 'SC':
-            return 24;
+            return 23;
             break;
         case 'SP':
-            return 25;
+            return 24;
             break;
         case 'SE':
-            return 26;
+            return 25;
             break;
         case 'TO':
-            return 27;
+            return 26;
             break;
         default:
             return ;
