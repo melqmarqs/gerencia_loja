@@ -10,8 +10,10 @@ namespace ConsertoDeLivro.Controllers {
     public class ConsertoDeLivroController : Controller {
         ConsertoDeLivroContext db = new ConsertoDeLivroContext();
 
+
         // GET: ConsertoDeLivro
         public ActionResult Index() {
+            TempData["End"] = "Rua: Rua 1, nº 999 - Nome do Bairro - Cidade, Estado";
             return View();
         }
 
@@ -62,6 +64,10 @@ namespace ConsertoDeLivro.Controllers {
                     return RedirectToAction("Login");
                 }
             }
+            return View();
+        }
+
+        public ActionResult Endereco() {
             return View();
         }
     }

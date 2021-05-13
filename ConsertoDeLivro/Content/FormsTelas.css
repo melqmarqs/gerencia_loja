@@ -14,7 +14,7 @@
 }
 
 .divCorpo div, .divDev div {
-    margin: 5px;
+    margin: 5px 10px;
     display: flex;
     flex-direction: column;
 }

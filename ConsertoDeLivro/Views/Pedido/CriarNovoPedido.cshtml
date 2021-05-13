@@ -1,8 +1,10 @@
 ﻿@using ConsertoDeLivro.Models
 @model ConsertoDeLivro.Models.Pedido
+
 @{
     ViewBag.Title = "Criar novo pedido";
     Usuario usuario = Session["Usuario"] as Usuario;
+    Endereco end = new Endereco();
 }
 
 <link href="~/Content/FormsTelas.css" rel="stylesheet" type="text/css" />
@@ -38,7 +40,7 @@
         <div class="divCorpo">
             <div>
                 <label>Material</label>
-                @Html.DropDownList("MaterialID", null, htmlAttributes: new { @class="" })
+                @Html.DropDownList("MaterialID", null, htmlAttributes: new { @class = "" })
             </div>
         </div>
         <div class="divCorpo">
@@ -46,6 +48,15 @@
                 <label>Descrição</label>
                 @Html.TextAreaFor(model => model.Descricao, new { @cols = "50", @rows = "6", @maxlength = "200" })
             </div>
+        </div>
+
+        <div class="aviso">
+            <label class="avisotitulo">Aviso importante!</label>
+            <label>
+                Após realizar o seu pedido, o mesmo ficará com o status "Aguardando". Quando o status mudar para "Confirmado". Você precisará levar o seu livro ao endereço abaixo:
+                <br />
+                @end.getEndCurto()
+            </label>
         </div>
 
         <hr />

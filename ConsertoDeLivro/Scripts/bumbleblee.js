@@ -3,10 +3,6 @@ var email;
 var cpf;
 var senha;
 
-$(document).ready(function (){
-    
-})
-
 function trocarSenha() {
     email = $('input[name="Email"]').val();
     cpf = $('input[name="CPF"]').val();
