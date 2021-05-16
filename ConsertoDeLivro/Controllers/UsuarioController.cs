@@ -16,20 +16,21 @@ namespace ConsertoDeLivro.Controllers {
         // GET: Usuario
         [Authorize]
         public ActionResult Lista() {
-            var userLogado = Session["Usuario"] as Usuario;
-            List<Usuario> usuarios = new List<Usuario>();
-            if (userLogado != null) {
-                if (userLogado.Dev)
-                    usuarios = db.Usuarios.ToList();
-                else if (userLogado.Adm)
-                    usuarios = db.Usuarios.Where(user => !user.Dev).ToList();
-                else
-                    return RedirectToAction("Index", "ConsertoDeLivro");
+            //var userLogado = Session["Usuario"] as Usuario;
+            //List<Usuario> usuarios = new List<Usuario>();
+            //if (userLogado != null) {
+            //    if (userLogado.Dev)
+            //        usuarios = db.Usuarios.ToList();
+            //    else if (userLogado.Adm)
+            //        usuarios = db.Usuarios.Where(user => !user.Dev).ToList();
+            //    else
+            //        return RedirectToAction("Index", "ConsertoDeLivro");
 
-                return View(usuarios);
-            }
+            //    return View(usuarios);
+            //}
 
-            return RedirectToAction("Index", "ConsertoDeLivro");
+            //return RedirectToAction("Index", "ConsertoDeLivro");
+            return View();
         }
 
         public ActionResult ListaUsuarios() {

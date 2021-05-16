@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ConsertoDeLivro.Models.Usuario>
+﻿@*@model IEnumerable<ConsertoDeLivro.Models.Usuario>*@
 @{
     ViewBag.Title = "Usuários";
 }
@@ -13,13 +13,13 @@
 <table id="tabelaUsuario" class="display" style="width: 100%">
     <thead>
         <tr class="linhaTitulo">
-            <th>@Html.DisplayNameFor(usr => usr.UsuarioID)</th>
-            <th>@Html.DisplayNameFor(usr => usr.Nome)</th>
-            <th>@Html.DisplayNameFor(usr => usr.Email)</th>
-            <th>@Html.DisplayNameFor(usr => usr.CPF)</th>
-            <th>@Html.DisplayNameFor(usr => usr.Celular)</th>
-            <th>@Html.DisplayNameFor(usr => usr.Adm)</th>
-            <th>@Html.DisplayNameFor(usr => usr.Dev)</th>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
+            <th>Celular</th>
+            <th>Adm</th>
+            <th>Dev</th>
             <th>Opções</th>
         </tr>
     </thead>

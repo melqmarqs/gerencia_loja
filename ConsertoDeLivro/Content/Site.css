@@ -41,14 +41,14 @@ html {
     background-color: rgba(250,191,34,0.7);
 }
 
-.divTop a {
+.btnsMenu > a {
     margin: 5px 7.5px;
     color: black !important;
     text-decoration: none !important;
-    background-color: transparent !important;
+    /*background-color: rgba(100, 100, 100, 1);*/
 }
 
-.divTop a:hover {
+.btnsMenu > a:hover {
     font-weight: 600 !important;
     background-color: transparent !important;
 }
@@ -119,4 +119,25 @@ footer p {
 
 .avisotitulo {
     text-transform: uppercase;
+}
+
+.btnsEntrarCadastrar > a {
+    margin-right: 5px;
+    text-decoration: none !important;
+    padding: 5px;
+    border-radius: 3px;
+    color: black;
+}
+
+.btnsEntrarCadastrar > a:hover {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btnsEntrarCadastrar > .entrar:hover {
+    background-color: rgba(1, 133, 31, 0.3);
+}
+
+.btnsEntrarCadastrar > .cadastrar:hover {
+    background-color: rgba(97, 0, 176, 0.3);
 }

@@ -1,10 +1,20 @@
 ﻿@using ConsertoDeLivro.Models
 
 @{
-    ViewBag.Title = "Endereco";
+    ViewBag.Title = "Contato";
     Layout = "~/Views/Shared/_Layout.cshtml";
     Endereco endereco = new Endereco();
 }
+
+<style>
+    .divCorpo > label {
+        margin-left: 10px;
+        margin-bottom: 5px;
+        background-color: rgba(54, 52, 52, 0.2);
+        padding: 5px;
+        border-radius: 3px;
+    }
+</style>
 
 @*
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -21,10 +31,13 @@
 <link href="~/Content/FormsTelas.css" rel="stylesheet" type="text/css" />
 
 <div class="divForm">
-    <label class="lblTitulo">Endereço</label>
+    <label class="lblTitulo">@ViewBag.Title</label>
     <br />
     <div class="divCorpo">
-        <label style="margin-left: 10px">@endereco.getEndCompleto()</label>
+        <label>WhatsApp: (19) 99493-4733</label>
+    </div>
+    <div class="divCorpo">
+        <label>@endereco.getEndCompleto()</label>
     </div>
     <div id="map">
     </div>

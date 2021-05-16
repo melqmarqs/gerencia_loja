@@ -26,6 +26,49 @@
     margin: 10px;
 }
 
+.dados div {
+    margin: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dados {
+    width: 100%;
+}
+
+.infoPedido {
+    display: flex;
+    flex-direction: row;
+}
+
+.infoPedido > div {
+    width: 50%;
+}
+
+.infoPedido > .infoValor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-style: italic;
+}
+
+.infoPedido .valor > span {
+    font-size: 1em;
+}
+
+.infoPedido .valor > label {
+    font-size: 4em;
+}
+
+.infoPedido .bold {
+    font-size: 0.9em;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 .divDev div {
     margin: 0px 20px;
 }

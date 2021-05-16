@@ -13,40 +13,63 @@
     <div class="divForm">
         <label class="lblTitulo">@ViewBag.Title</label>
         <hr />
-        <div class="divCorpo">
+
+        <div class="infoPedido">
             <div>
-                @Html.LabelFor(model => model.Largura)
-                <span>
-                    @Html.EditorFor(model => model.Largura) cm
-                </span>
+                <div class="dados">
+                    <div>
+                        @Html.LabelFor(model => model.Largura)
+                        <span>
+                            @Html.EditorFor(model => model.Largura) cm
+                        </span>
+                    </div>
+                </div>
+                <div class="dados">
+                    <div>
+                        @Html.LabelFor(model => model.Comprimento)
+                        <span>
+                            @Html.EditorFor(model => model.Comprimento) cm
+                        </span>
+                    </div>
+                </div>
+                <div class="dados">
+                    <div>
+                        @Html.LabelFor(model => model.Expessura)
+                        <span>
+                            @Html.EditorFor(model => model.Expessura) cm
+                        </span>
+                    </div>
+                </div>
+                <div class="dados">
+                    <div>
+                        <label>Material</label>
+                        @Html.DropDownList("MaterialID", null, htmlAttributes: new { @class = "" })
+                    </div>
+                </div>
+                <div class="dados">
+                    <div>
+                        <label>Descrição</label>
+                        @Html.TextAreaFor(model => model.Descricao, new { @cols = "50", @rows = "6", @maxlength = "200" })
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="divCorpo">
-            <div>
-                @Html.LabelFor(model => model.Comprimento)
-                <span>
-                    @Html.EditorFor(model => model.Comprimento) cm
-                </span>
-            </div>
-        </div>
-        <div class="divCorpo">
-            <div>
-                @Html.LabelFor(model => model.Expessura)
-                <span>
-                    @Html.EditorFor(model => model.Expessura) cm
-                </span>
-            </div>
-        </div>
-        <div class="divCorpo">
-            <div>
-                <label>Material</label>
-                @Html.DropDownList("MaterialID", null, htmlAttributes: new { @class = "" })
-            </div>
-        </div>
-        <div class="divCorpo">
-            <div>
-                <label>Descrição</label>
-                @Html.TextAreaFor(model => model.Descricao, new { @cols = "50", @rows = "6", @maxlength = "200" })
+            <div class="infoValor">
+                <div class="valor">
+                    <span>R$</span>
+                    <label id="preco">0,00</label>
+                </div>
+                <div class="pag">
+                    <span>Formas de pagamento:</span>
+                    <div class="opcoesPag">
+                        <ul>
+                            <li>PIX</li>
+                            <li>Dinheiro</li>
+                            <li>Cartao de Credito</li>
+                            <li>Cartao de Debito</li>
+                        </ul>
+                    </div>
+                    <span class="text-danger bold">**O pagamento é realizado na retirada do material.</span>
+                </div>
             </div>
         </div>
 

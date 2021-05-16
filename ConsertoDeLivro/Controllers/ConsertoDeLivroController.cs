@@ -67,7 +67,7 @@ namespace ConsertoDeLivro.Controllers {
             return View();
         }
 
-        public ActionResult Endereco() {
+        public ActionResult Contato() {
             return View();
         }
     }
