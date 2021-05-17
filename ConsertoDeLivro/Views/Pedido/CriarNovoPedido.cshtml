@@ -8,6 +8,7 @@
 }
 
 <link href="~/Content/FormsTelas.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/bumbleblee.js"></script>
 
 @using (Html.BeginForm()) {
     <div class="divForm">
@@ -20,7 +21,7 @@
                     <div>
                         @Html.LabelFor(model => model.Largura)
                         <span>
-                            @Html.EditorFor(model => model.Largura) cm
+                            @Html.TextBoxFor(model => model.Largura, new { @onkeypress="teste(this, event)", @onkeyup="hihi(this, event)" }) cm
                         </span>
                     </div>
                 </div>
@@ -28,7 +29,7 @@
                     <div>
                         @Html.LabelFor(model => model.Comprimento)
                         <span>
-                            @Html.EditorFor(model => model.Comprimento) cm
+                            @Html.TextBoxFor(model => model.Comprimento, new { @onkeypress = "teste(this, event)", @onkeyup = "hihi(this, event)" }) cm
                         </span>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
                     <div>
                         @Html.LabelFor(model => model.Expessura)
                         <span>
-                            @Html.EditorFor(model => model.Expessura) cm
+                            @Html.TextBoxFor(model => model.Expessura, new { @onkeypress = "teste(this, event)", @onkeyup = "hihi(this, event)" }) cm
                         </span>
                     </div>
                 </div>

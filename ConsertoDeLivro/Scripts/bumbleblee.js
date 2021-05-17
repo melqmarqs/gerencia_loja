@@ -2,6 +2,7 @@
 var email;
 var cpf;
 var senha;
+var larg, alt, exp;
 
 function trocarSenha() {
     email = $('input[name="Email"]').val();
@@ -83,7 +84,7 @@ function campoNumerico(key) {
         return false;
     }
 
-    if ((key.keyCode < 48 || key.keyCode > 57) &&
+    if ((key.keyCode < 48 || key.keyCode > 57) && //numeros
         (key.keyCode < 37 || key.keyCode > 40) &&
         key.keyCode != 8) {
         key.preventDefault();
@@ -109,5 +110,34 @@ function conferirCampoValor(key) {
         if (campoValor.length == 5) {
             $('#ValorMetro').val(campoValor.replace(',', '').slice(0, 3) + ',' + campoValor.slice(4));
         }
+    }
+}
+
+function teste(tag, key) {
+
+    let cod = key.keyCode || key.which;
+
+    if (cod < 48 || cod > 57 || tag.value.length > 2) {
+        key.preventDefault();
+    }
+}
+
+function hihi(tag, key) {
+    larg = tag.id == 'Largura' ? tag.value : larg;
+    alt = tag.id == 'Comprimento' ? tag.value : alt;
+    exp = tag.id == 'Expessura' ? tag.value : exp;
+
+    console.log(larg + ' | ' + alt + ' | ' + exp);
+
+    larg = parseInt(larg);
+    alt = parseInt(alt);
+    exp = parseInt(exp);
+
+    let valor = 40;
+
+    if (larg > 0 && alt > 0 && (exp != undefined && !isNaN(exp))) {
+        let preco = (((larg + exp + 5) / 100) * (valor / 2)) + (((alt + 5) / 100) * (valor / 2));
+        let preco_final = parseFloat(preco + 15).toFixed(2).replace('.',',');
+        $('#preco').text(preco_final);
     }
 }
