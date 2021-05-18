@@ -105,9 +105,9 @@
         <div class="divBtns">
             <input type="submit" value="Criar" class="btn btn-success" />
             @if (usuario != null && usuario.Dev == true) {
-                @Html.ActionLink("Voltar", "Lista", "Usuario")
+                @Html.ActionLink("Cancelar", "Lista", "Usuario", null, new { @class="btn btn-danger" })
             } else {
-                @Html.ActionLink("Voltar", "Index", "ConsertoDeLivro")
+                @Html.ActionLink("Cancelar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-danger" })
             }
         </div>
     </div>

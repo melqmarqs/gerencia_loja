@@ -21,15 +21,15 @@
                     <div>
                         @Html.LabelFor(model => model.Largura)
                         <span>
-                            @Html.TextBoxFor(model => model.Largura, new { @onkeypress="teste(this, event)", @onkeyup="hihi(this, event)" }) cm
+                            @Html.TextBoxFor(model => model.Largura, new { @onkeypress="apenasNumeros(this, event)", @onkeyup="precoMaterial(this, event)" }) cm
                         </span>
                     </div>
                 </div>
                 <div class="dados">
                     <div>
-                        @Html.LabelFor(model => model.Comprimento)
+                        @Html.LabelFor(model => model.Altura)
                         <span>
-                            @Html.TextBoxFor(model => model.Comprimento, new { @onkeypress = "teste(this, event)", @onkeyup = "hihi(this, event)" }) cm
+                            @Html.TextBoxFor(model => model.Altura, new { @onkeypress = "apenasNumeros(this, event)", @onkeyup = "precoMaterial(this, event)" }) cm
                         </span>
                     </div>
                 </div>
@@ -37,14 +37,14 @@
                     <div>
                         @Html.LabelFor(model => model.Expessura)
                         <span>
-                            @Html.TextBoxFor(model => model.Expessura, new { @onkeypress = "teste(this, event)", @onkeyup = "hihi(this, event)" }) cm
+                            @Html.TextBoxFor(model => model.Expessura, new { @onkeypress = "apenasNumeros(this, event)", @onkeyup = "precoMaterial(this, event)" }) cm
                         </span>
                     </div>
                 </div>
                 <div class="dados">
                     <div>
                         <label>Material</label>
-                        @Html.DropDownList("MaterialID", null, htmlAttributes: new { @class = "" })
+                        @Html.DropDownList("MaterialID", null, htmlAttributes: new { @onchange = "precoMaterial(this)" })
                     </div>
                 </div>
                 <div class="dados">
@@ -57,7 +57,8 @@
             <div class="infoValor">
                 <div class="valor">
                     <span>R$</span>
-                    <label id="preco">0,00</label>
+                    <label id="Valor">0,00</label>
+                    <input name="Valor" hidden />
                 </div>
                 <div class="pag">
                     <span>Formas de pagamento:</span>
@@ -69,7 +70,12 @@
                             <li>Cartao de Debito</li>
                         </ul>
                     </div>
-                    <span class="text-danger bold">**O pagamento é realizado na retirada do material.</span>
+                    <div class="infoPag">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        <span class="att bold">Atenção</span>
+                        <span class="text-danger bold">O pagamento é realizado na retirada do material.</span>
+                        <span class="text-danger bold">O valor pode sofrer alterações.</span>
+                    </div>
                 </div>
             </div>
         </div>

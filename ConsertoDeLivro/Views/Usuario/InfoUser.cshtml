@@ -8,7 +8,7 @@
 <div class="divForm">
     <label class="lblTitulo">@ViewBag.Title</label>
     <hr />
-    <div class="divColumn">
+    <div class="divCentral">
         <div>
             @Html.LabelFor(user => user.Nome):
             <span>@Model.Nome</span>
@@ -66,9 +66,9 @@
             </div>
         }
         <hr />
-        <div class="divBtns">
+        <div>
+            @Html.ActionLink("Voltar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-warning" })
             @Html.ActionLink("Alterar dados", "Atualizar", "Usuario", new { id = Model.UsuarioID }, new { @class = "btn btn-success" })
-            <a href="/ConsertoDeLivro/Index">Voltar</a>
         </div>
     </div>
 </div>

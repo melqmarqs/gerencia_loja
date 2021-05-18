@@ -69,5 +69,14 @@ namespace ConsertoDeLivro.Controllers {
             db.SaveChanges();
             return RedirectToAction("ListaMateriais");
         }
+
+        public ActionResult getMaterialById(int id) {
+            var material = db.Materiais.Where(mat => mat.Id == id).ToList();
+            if (material != null) {
+                return Json(material.ElementAt(0), JsonRequestBehavior.AllowGet);
+            }
+
+            return Json("Sem dados", JsonRequestBehavior.AllowGet);
+        }
     }
 }

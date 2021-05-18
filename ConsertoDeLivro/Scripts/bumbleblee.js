@@ -2,7 +2,9 @@
 var email;
 var cpf;
 var senha;
-var larg, alt, exp;
+var larg;
+var alt;
+var exp;
 
 function trocarSenha() {
     email = $('input[name="Email"]').val();
@@ -78,20 +80,20 @@ function confirmarSenha() {
 }
 
 function campoNumerico(key) {
-    //console.log(key.keyCode);
+    let cod = key.keyCode || key.which;
 
     if ($('#ValorMetro').val().length >= 6) {
         return false;
     }
 
-    if ((key.keyCode < 48 || key.keyCode > 57) && //numeros
-        (key.keyCode < 37 || key.keyCode > 40) &&
-        key.keyCode != 8) {
+    if ((cod < 48 || cod > 57) && //numeros
+        (cod < 37 || cod > 40) &&
+        cod != 8) {
         key.preventDefault();
         return false;
     }
 
-    if ((key.keyCode >= 48 && key.keyCode <= 57) || key.keyCode == 8)
+    if ((cod >= 48 && cod <= 57) || cod == 8)
         conferirCampoValor(key);
 }
 
@@ -113,7 +115,7 @@ function conferirCampoValor(key) {
     }
 }
 
-function teste(tag, key) {
+function apenasNumeros(tag, key) {
 
     let cod = key.keyCode || key.which;
 
@@ -122,22 +124,44 @@ function teste(tag, key) {
     }
 }
 
-function hihi(tag, key) {
+function precoMaterial(tag, key) {
     larg = tag.id == 'Largura' ? tag.value : larg;
-    alt = tag.id == 'Comprimento' ? tag.value : alt;
+    alt = tag.id == 'Altura' ? tag.value : alt;
     exp = tag.id == 'Expessura' ? tag.value : exp;
-
-    console.log(larg + ' | ' + alt + ' | ' + exp);
 
     larg = parseInt(larg);
     alt = parseInt(alt);
     exp = parseInt(exp);
 
-    let valor = 40;
-
     if (larg > 0 && alt > 0 && (exp != undefined && !isNaN(exp))) {
-        let preco = (((larg + exp + 5) / 100) * (valor / 2)) + (((alt + 5) / 100) * (valor / 2));
-        let preco_final = parseFloat(preco + 15).toFixed(2).replace('.',',');
-        $('#preco').text(preco_final);
+        let matId = $('select[name="MaterialID"]')[0].value;
+        $.ajax({
+            url: '/Material/getMaterialById',
+            method: 'get',
+            dataType: 'json',
+            data: { id: matId },
+            success(data) {
+                if (data == 'Sem dados') {
+                    alert('Esse material não foi encontrado no sistema!');
+                } else {
+                    valor = parseFloat(data.ValorMetro);
+                    calculaValor(valor);
+                }
+            },
+            erro(e) {
+                console.log(e);
+                alert('Erro! Por favor, consulte o administrador do sistema!');
+            }
+        })
+    } else {
+        $('#Valor').text('0,00');
+        $('input[name="Valor"]').val('0,00');
     }
+}
+
+function calculaValor(preco) {
+    preco = (((larg + exp + 5) / 100) * (valor / 2)) + (((alt + 5) / 100) * (valor / 2));
+    let preco_final = parseFloat(preco + 15).toFixed(2).replace('.', ',');
+    $('#Valor').text(preco_final);
+    $('input[name="Valor"]').val(preco_final);
 }

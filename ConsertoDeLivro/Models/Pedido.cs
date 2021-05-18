@@ -13,7 +13,7 @@ namespace ConsertoDeLivro.Models {
 
         public string Largura { get; set; }
 
-        public string Comprimento { get; set; }
+        public string Altura { get; set; }
 
         public string Expessura { get; set; }
 

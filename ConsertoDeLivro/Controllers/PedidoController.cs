@@ -14,7 +14,7 @@ namespace ConsertoDeLivro.Controllers {
             Usuario userLogado = (Session["Usuario"] as Usuario);
             List<Pedido> pedidos = new List<Pedido>();
             
-            if (userLogado.UsuarioID != 0 && !userLogado.Adm) {
+            if (userLogado != null && userLogado.UsuarioID != 0 && !userLogado.Adm) {
                 pedidos = db.Pedidos.Where(v => v.UsuarioID == userLogado.UsuarioID).ToList();                
             } else if (userLogado.Adm) {
                 pedidos = db.Pedidos.Include(i => i.Material).ToList();

@@ -514,6 +514,10 @@
     <Compile Include="Migrations\202104192220499_FloatToString.designer.cs">
       <DependentUpon>202104192220499_FloatToString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105180044378_MudarComprimentoParaAltura.cs" />
+    <Compile Include="Migrations\202105180044378_MudarComprimentoParaAltura.designer.cs">
+      <DependentUpon>202105180044378_MudarComprimentoParaAltura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ConsertoDeLivroContext.cs" />
     <Compile Include="Models\Endereco.cs" />
@@ -649,6 +653,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104192220499_FloatToString.resx">
       <DependentUpon>202104192220499_FloatToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105180044378_MudarComprimentoParaAltura.resx">
+      <DependentUpon>202105180044378_MudarComprimentoParaAltura.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

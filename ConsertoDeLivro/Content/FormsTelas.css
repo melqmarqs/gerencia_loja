@@ -26,6 +26,12 @@
     margin: 10px;
 }
 
+.divCentral {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 20px;
+}
+
 .dados div {
     margin: 15px 20px;
     display: flex;
@@ -120,4 +126,22 @@ table {
 
 .margemEsquerda {
     margin-left: 10px;
+}
+
+.infoPag {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    width: 50%;
+    padding: 5px;
+    background-color: #E1BEE9;
+    text-align: center;
+    cursor: pointer;
+}
+
+.infoPag > .att {
+    font-size: 1em;
+    margin-bottom: 3px;
+    font-family: 'Times New Roman';
+    font-style: normal;
 }

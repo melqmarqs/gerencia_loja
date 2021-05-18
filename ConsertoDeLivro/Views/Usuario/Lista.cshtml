@@ -9,48 +9,30 @@
 
 <script src="~/Scripts/usuarios.js" type="text/javascript"></script>
 
-<h2>@ViewBag.Title</h2>
-<table id="tabelaUsuario" class="display" style="width: 100%">
-    <thead>
-        <tr class="linhaTitulo">
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>CPF</th>
-            <th>Celular</th>
-            <th>Adm</th>
-            <th>Dev</th>
-            <th>Opções</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-    @*@foreach (var item in Model) {
-            <tr class="linhaConteudo">
-                <td>@Html.DisplayFor(modelItem => item.UsuarioID)</td>
-                <td>@Html.DisplayFor(modelItem => item.Nome)</td>
-                <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                <td>@Html.DisplayFor(modelItem => item.CPF)</td>
-                <td>@Html.DisplayFor(modelItem => item.Celular)</td>
-                <td>
-                    @if (item.Adm) {
-                        <span>Sim</span>
-                    } else {
-                        <span>Não</span>
-                    }
-                </td>
-                <td>
-                    @if (item.Dev) {
-                        <span>Sim</span>
-                    } else {
-                        <span>Não</span>
-                    }
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Atualizar", new { id = item.UsuarioID }) |
-                    <a href="#" onclick="excluirUsuario(@item.UsuarioID);">Excluir</a>
-                </td>
-            </tr>
-        }*@
-</table>
-<br />
-@Html.ActionLink("Criar novo usuário", "Criar")
+<div class="divForm">
+    <label class="lblTitulo">@ViewBag.Title</label>
+    <hr />
+    <div class="divCentral">
+        <table id="tabelaUsuario" class="display" style="width: 100%">
+            <thead>
+                <tr class="linhaTitulo">
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>CPF</th>
+                    <th>Celular</th>
+                    <th>Adm</th>
+                    <th>Dev</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <br />
+        <div>
+            @Html.ActionLink("Voltar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Novo usuário", "Criar", "Usuario", null, new { @class = "btn btn-success" })
+        </div>
+    </div>
+</div>

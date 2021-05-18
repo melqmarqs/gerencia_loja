@@ -20,6 +20,10 @@ textarea {
     max-width: 280px;
 }
 
+.centralizado > p {
+    margin-top: 5px;
+}
+
 * {
     font-family: 'Ubuntu', sans-serif;
     font-size: 1em;
@@ -121,7 +125,7 @@ footer p {
     text-transform: uppercase;
 }
 
-.btnsEntrarCadastrar > a {
+.btnsEntrarCadastrar  a {
     margin-right: 5px;
     text-decoration: none !important;
     padding: 5px;
@@ -129,7 +133,7 @@ footer p {
     color: black;
 }
 
-.btnsEntrarCadastrar > a:hover {
+.btnsEntrarCadastrar  a:hover {
     text-decoration: none;
     font-weight: 600;
 }
@@ -140,4 +144,8 @@ footer p {
 
 .btnsEntrarCadastrar > .cadastrar:hover {
     background-color: rgba(97, 0, 176, 0.3);
+}
+
+#aUsuario {
+    background-color: transparent !important;
 }
