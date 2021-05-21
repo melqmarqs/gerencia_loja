@@ -1,60 +1,162 @@
 ﻿@using ConsertoDeLivro.Models;
-@model IEnumerable<ConsertoDeLivro.Models.Pedido>
+
 @{
     ViewBag.Title = "Lista de pedidos";
     Usuario usuario = Session["Usuario"] as Usuario;
 }
 
 <link href="~/Content/FormsTelas.css" rel="stylesheet" />
+<script src="~/Scripts/bumbleblee.js"></script>
 
 <div class="divForm">
     <label class="lblTitulo">@ViewBag.Title</label>
     <hr />
-    <div class="divCentral">
-        @if (Model != null && Model.Count() > 0) {
-            <table border="1">
-                <tr>
-                    <th>ID</th>
-                    <th>Usuario</th>
-                    <th>Largura</th>
-                    <th>Comprimento</th>
-                    <th>Expessura</th>
-                    <th>Material</th>
-                    <th>Aceito</th>
-                    <th>Feito</th>
-                    <th>Entregue</th>
-                    <th>Opções</th>
-                </tr>
-                @foreach (var item in Model) {
-                    <tr>
-                        <td>@Html.DisplayFor(i => item.PedidoID)</td>
-                        <td>@Html.DisplayFor(i => item.Usuario.Nome) # <span>@item.Usuario.UsuarioID</span></td>
-                        <td>@Html.DisplayFor(i => item.Largura)</td>
-                        <td>@Html.DisplayFor(i => item.Altura)</td>
-                        <td>@Html.DisplayFor(i => item.Expessura)</td>
-                        <td>@Html.DisplayFor(i => item.Material.Nome)</td>
-                        <td>@Html.DisplayFor(i => item.Aceito)</td>
-                        <td>@Html.DisplayFor(i => item.Feito)</td>
-                        <td>@Html.DisplayFor(i => item.Entregue)</td>
-                        <td>
-                            @Html.ActionLink("Detalhes", "DetalhesPedido", "Pedido", new { id = item.PedidoID }, null)
-                        </td>
-                    </tr>
+    @if (usuario != null) {
+        <div class="divCentral">
+            <div class="mensagens">
+                <label>@TempData["PedidoAguardando"]</label>
+                <div class="pddAceitar" style="display: none;">
+                    <label>O pedido foi aceitado com sucesso.</label>
+                </div>
+                <div class="pddFinalizar" style="display: none;">
+                    <label>O status do pedido mudou para finalizado.</label>
+                </div>
+                <div class="pddEntregar" style="display: none;">
+                    <label>O pedido foi concluído e o status do pedido mudou para entregue.</label>
+                </div>
+                <div class="pddErro" style="display: none;">
+                    <label>Houve um erro: entre em contato com o administrador do sistema.</label>
+                </div>
+            </div>
+
+            <div class="sttPedidos">
+                <label id="Finalizados" class="titulo finalizados" onclick="exibirDiv(this)">Finalizados <span id="numFinalizados"></span></label>
+                <div style="display: none">
+                    <div class="pdd" hidden>
+                        <div>
+                            <label>Cod. Pedido: <span id="idPedido"></span></label><br />
+                            <label id="cliente"></label><br />
+                            <label id="numCelular"></label><br />
+                        </div>
+                        <div>
+                            <label>Largura: <span id="largura"></span>cm </label><br />
+                            <label>Altura: <span id="altura"></span>cm </label><br />
+                            <label>Expessura: <span id="expessura"></span>cm </label><br />
+                        </div>
+                        <div>
+                            <label id="data"></label><br />
+                            <label>Material: <span id="material"></span></label><br />
+                            <label>Descrição: <span id="descricao"></span></label>
+                        </div>
+                        <div class="btnPdd">
+                            @if (usuario.Adm) {
+                                <span id="btnEntregar" class="btn btn-success btn-sm">Entregar Pedido</span>
+                                <span id="infoEntregue" class="bold">Pedido Entregue</span>
+                                <br />
+                            } else {
+                                <span id="infoRetirar" class="bold">Retirar Produto</span>
+                                <span id="infoRetirado" class="bold">Produto Retirado</span>
+                                <br />
+                            }
+                            <label>R$ <span id="preco"></span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="sttPedidos">
+                <label id="Aceitos" class="titulo aceitos" onclick="exibirDiv(this)">Aceitos <span id="numAceitos"></span></label>
+                <div style="display: none">
+                    <div class="pdd" hidden>
+                        <div>
+                            <label>Cod. Pedido: <span id="idPedido"></span></label><br />
+                            <label id="cliente"></label><br />
+                            <label id="numCelular"></label><br />
+                        </div>
+                        <div>
+                            <label>Largura: <span id="largura"></span>cm </label><br />
+                            <label>Altura: <span id="altura"></span>cm </label><br />
+                            <label>Expessura: <span id="expessura"></span>cm </label><br />
+                        </div>
+                        <div>
+                            <label id="data"></label><br />
+                            <label>Material: <span id="material"></span></label><br />
+                            <label>Descrição: <span id="descricao"></span></label>
+                        </div>
+                        <div class="btnPdd">
+                            @if (usuario.Adm) {
+                                <span id="btnFinalizar" class="btn btn-primary btn-sm">Finalizar Pedido</span><br />
+                            }
+                            <label>R$ <span id="preco"></span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="sttPedidos">
+                <label id="Aguardando" class="titulo aguardando" onclick="exibirDiv(this)">Aguardando <span id="numAguardando"></span> </label>
+                <div style="display: none">
+                    <div class="pdd" hidden>
+                        <div>
+                            <label>Cod. Pedido: <span id="idPedido"></span></label><br />
+                            <label id="cliente"></label><br />
+                            <label id="numCelular"></label><br />
+                        </div>
+                        <div>
+                            <label>Largura: <span id="largura"></span>cm </label><br />
+                            <label>Altura: <span id="altura"></span>cm </label><br />
+                            <label>Expessura: <span id="expessura"></span>cm </label><br />
+                        </div>
+                        <div class="data">
+                            <label id="data"></label><br />
+                            <label>Material: <span id="material"></span></label><br />
+                            <label>Descrição: <span id="descricao"></span></label>
+                        </div>
+                        <div class="btnPdd">
+                            @if (usuario.Adm) {
+                                <span id="btnAcc" class="btn btn-success btn-sm">Aceitar Pedido</span><br />
+                            }
+                            <label>R$ <span id="preco"></span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="sttPedidos">
+                <label id="Recusados" class="titulo recusados" onclick="exibirDiv(this)">Recusados <span id="numRecusados"></span></label>
+                <div style="display: none">
+                    <div class="pdd" hidden>
+                        <div>
+                            <label>Cod. Pedido: <span id="idPedido"></span></label><br />
+                            <label id="cliente"></label><br />
+                            <label id="numCelular"></label><br />
+                        </div>
+                        <div>
+                            <label>Largura: <span id="largura"></span>cm </label><br />
+                            <label>Altura: <span id="altura"></span>cm </label><br />
+                            <label>Expessura: <span id="expessura"></span>cm </label><br />
+                        </div>
+                        <div>
+                            <label id="data"></label><br />
+                            <label>Material: <span id="material"></span></label><br />
+                            <label>Descrição: <span id="descricao"></span></label>
+                        </div>
+                        <div class="btnPdd">
+                            @if (usuario.Adm) {
+                                <span id="btnEdt"></span><br />
+                            }
+                            <label>R$ <span id="preco"></span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                @Html.ActionLink("Voltar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-warning" })
+                @if (!usuario.Adm || !usuario.Dev) {
+                    @Html.ActionLink("Novo pedido", "CriarNovoPedido", "Pedido", null, new { @class = "btn btn-success" })
                 }
-            </table>
-        } else if (usuario != null && (usuario.Adm || usuario.Dev)) {
-            <h3 class="text-danger">Ainda não foram feitos pedidos.</h3>
-            <br />
-            <div>
-                @Html.ActionLink("Voltar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-warning" })
             </div>
-        } else {
-            <h3 class="text-danger">Você ainda não fez nenhum pedido</h3>
-            <br />
-            <div>
-                @Html.ActionLink("Voltar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-warning" })
-                @Html.ActionLink("Novo pedido", "CriarNovoPedido", "Pedido", null, new { @class = "btn btn-success" })
-            </div>
-        }
-    </div>
+        </div>
+    }
 </div>

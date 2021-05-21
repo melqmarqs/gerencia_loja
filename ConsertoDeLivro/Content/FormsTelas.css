@@ -145,3 +145,109 @@ table {
     font-family: 'Times New Roman';
     font-style: normal;
 }
+
+.sttPedidos > .titulo {
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1.2em;
+    padding: 5px;
+    color: black;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.sttPedidos > .finalizados,
+.sttPedidos .finalizados + div #data {
+    background-color: #44C1C0;
+}
+
+.sttPedidos > .aceitos,
+.sttPedidos .aceitos + div #data {
+    background-color: #3AAF57;
+}
+
+.sttPedidos > .aguardando,
+.sttPedidos .aguardando + div #data {
+    background-color: #C1B445;
+}
+
+.sttPedidos > .recusados,
+.sttPedidos .recusados + div #data {
+    background-color: #B9503E;
+}
+
+.sttPedidos > div {
+    /*height: 200px;*/
+    max-height: 430px;
+    overflow-y: auto;
+}
+
+.sttPedidos .pdd[pedido] {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #B7E7E6;
+    display: flex;
+    flex-direction: row;
+}
+
+.sttPedidos .pdd:hover {
+    background-color: #99DDDC;
+}
+
+.sttPedidos .pdd div {
+    width: 33%;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.sttPedidos .pdd .btnPdd {
+    text-align: end;
+    text-transform: uppercase;
+}
+
+.sttPedidos .pdd #cliente {
+    font-size: 1.2em;
+}
+
+.sttPedidos .pdd #data {
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.mensagens {
+    margin-bottom: 10px;
+}
+
+.mensagens label {
+    margin: 0;
+    padding: 7px;
+}
+
+.mensagens .pddAceitar {
+    border: 2px solid #3AAF57;
+    background-color: rgba(58, 175, 87, 0.3);
+    border-radius: 10px;
+}
+
+.mensagens .pddFinalizar {
+    border: 2px solid #3AAEA3;
+    border-radius: 10px;
+    background-color: rgba(58, 174, 163, 0.3);
+}
+
+.mensagens .pddEntregar {
+    border: 2px solid #44C1C0;
+    border-radius: 10px;
+    background-color: rgba(68, 193, 192, 0.3);
+}
+
+.mensagens .pddErro {
+    border-radius: 10px;
+    background-color: rgba(185, 80, 62, 0.3);
+    border: 2px solid #B9503E;
+}
+
+.sttPedidos #preco {
+    font-size: 1.5em;
+}

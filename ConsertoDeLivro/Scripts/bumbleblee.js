@@ -5,6 +5,9 @@ var senha;
 var larg;
 var alt;
 var exp;
+const aceitar = 'Aceitar';
+const finalizar = 'Finalizar';
+const entregar = 'Entregar';
 
 function trocarSenha() {
     email = $('input[name="Email"]').val();
@@ -129,9 +132,9 @@ function precoMaterial(tag, key) {
     alt = tag.id == 'Altura' ? tag.value : alt;
     exp = tag.id == 'Expessura' ? tag.value : exp;
 
-    larg = parseInt(larg);
-    alt = parseInt(alt);
-    exp = parseInt(exp);
+    larg = parseInt(larg) || parseFloat($('#Largura').val());
+    alt = parseInt(alt) || parseFloat($('#Altura').val());
+    exp = parseInt(exp) || parseFloat($('#Expessura').val());
 
     if (larg > 0 && alt > 0 && (exp != undefined && !isNaN(exp))) {
         let matId = $('select[name="MaterialID"]')[0].value;
@@ -164,4 +167,144 @@ function calculaValor(preco) {
     let preco_final = parseFloat(preco + 15).toFixed(2).replace('.', ',');
     $('#Valor').text(preco_final);
     $('input[name="Valor"]').val(preco_final);
+}
+
+function exibirDiv(tag) {
+
+    //console.log($('#' + tag.id).next().css('display'));
+    //console.log(tag.id);
+
+    let elem = $('#' + tag.id).next();
+    if (elem.css('display') == 'block') {
+        elem.fadeOut();
+
+        elem.children().each(function (index, div) {
+            if (div.getAttribute('pedido')) {
+                div.remove();
+            }
+        });
+
+        $('#num' + tag.id).text('');
+
+    } else {
+        elem.fadeIn(1200);
+
+        $.ajax({
+            url: '/Pedido/getPedidos' + tag.id,
+            method: 'get',
+            dataType: 'json',
+            success(data) {
+                data.forEach(function (dados) {
+                    let clone = elem.children().clone();
+                    clone[0].removeAttribute('hidden');
+                    let novoClone = clone[0];
+
+                    novoClone.setAttribute('pedido', dados.PedidoID);
+
+                    novoClone.querySelector('#idPedido').textContent = dados.PedidoID;
+                    novoClone.querySelector('#cliente').textContent = dados.Usuario.Nome + ' ' + dados.Usuario.UltimoNome;
+                    let numCelular = formatarNumCelular(dados.Usuario.Celular);
+                    novoClone.querySelector('#numCelular').textContent = numCelular;
+
+                    novoClone.querySelector('#largura').textContent = dados.Largura;
+                    novoClone.querySelector('#altura').textContent = dados.Altura;
+                    novoClone.querySelector('#expessura').textContent = dados.Expessura;
+
+                    novoClone.querySelector('#data').textContent = dados.DataPedido;
+                    novoClone.querySelector('#material').textContent = dados.Material.Nome;
+                    novoClone.querySelector('#descricao').textContent = dados.Descricao;
+
+                    if (novoClone.querySelector('#btnAcc'))
+                        novoClone.querySelector('#btnAcc').setAttribute('onclick', 'acaoPedido(' + dados.PedidoID + ', \'' + aceitar + '\', \'' + tag.id + '\')');
+
+                    if (novoClone.querySelector('#btnFinalizar'))
+                        novoClone.querySelector('#btnFinalizar').setAttribute('onclick', 'acaoPedido(' + dados.PedidoID + ', \'' + finalizar + '\', \'' + tag.id + '\')');
+
+                    if (dados.Usuario.Adm) {
+                        if (dados.Entregue) {
+                            if (novoClone.querySelector('#infoEntregue') && novoClone.querySelector('#btnEntregar')) {
+                                novoClone.querySelector('#btnEntregar').setAttribute('hidden', '');
+                                novoClone.querySelector('#btnEntregar').removeAttribute('class');
+                                novoClone.querySelector('#infoEntregue').removeAttribute('hidden');
+                            }
+                        } else {
+                            if (novoClone.querySelector('#infoEntregue') && novoClone.querySelector('#btnEntregar')) {
+                                novoClone.querySelector('#infoEntregue').setAttribute('hidden', '');
+                                novoClone.querySelector('#btnEntregar').removeAttribute('hidden');
+                                novoClone.querySelector('#btnEntregar').setAttribute('btnpedido', dados.PedidoID);
+                                novoClone.querySelector('#btnEntregar').setAttribute('onclick', 'acaoPedido(' + dados.PedidoID + ', \'' + entregar + '\', \'' + tag.id + '\')');
+                            }
+                        }
+                    } else {
+                        if (dados.Entregue) {
+                            if (novoClone.querySelector('#infoRetirar') && novoClone.querySelector('#infoRetirado')) {
+                                novoClone.querySelector('#infoRetirar').setAttribute('hidden', '');
+                                novoClone.querySelector('#infoRetirado').removeAttribute('hidden');
+                            }
+                        } else {
+                            if (novoClone.querySelector('#infoRetirar') && novoClone.querySelector('#infoRetirado')) {
+                                novoClone.querySelector('#infoRetirar').removeAttribute('hidden');
+                                novoClone.querySelector('#infoRetirado').setAttribute('hidden', '');
+                            }
+                        }
+                    }
+
+                    novoClone.querySelector('#preco').textContent = dados.Valor;
+
+                    elem.append(novoClone);
+                })
+
+                $('#num' + tag.id).text(' - ' + data.length);
+            },
+            error(e) {
+                console.error('erro');
+            }
+        });
+    }
+}
+
+function formatarNumCelular(numCelular) {
+    let novoNumCelular;
+    if (numCelular.length == 11) {
+        novoNumCelular = ['(', numCelular.slice(0, 2), ') ', numCelular.slice(2, 7), '-', numCelular.slice(7)].join('');
+    } else {
+        novoNumCelular = [numCelular.slice(0, 6), '-', numCelular(6)].join('');
+    }
+
+    return novoNumCelular;
+}
+
+function acaoPedido(idPedido, acao, num) {
+
+    $.ajax({
+        url: '/Pedido/set' + acao + 'Pedido',
+        data: { idPedido: idPedido },
+        dataType: 'json',
+        method: 'get',
+        success(data) {
+            if (data == 'Sucesso') {
+                if (acao == 'Entregar') {
+                    let tag = $('span[btnpedido=\'' + idPedido + '\']').next();
+                    $('span[btnpedido=\'' + idPedido + '\']').remove();
+                    tag.fadeIn('slow');
+                } else {
+                    $('div[pedido="' + idPedido + '"]').fadeOut();
+                    $('.pdd' + acao).fadeToggle();
+                    setTimeout($('.pdd' + acao).fadeToggle()
+                        , 3000);
+                    $('#num' + num).text(' - ' + parseInt($('#num' + num).text().replace(' - ', '')) - 1);
+                }
+            } else {
+                $('.pddErro').fadeToggle();
+                setTimeout($('.pddErro').fadeToggle()
+                    , 4000);
+            }
+        },
+        erro(e) {
+            $('.pddErro').fadeToggle();
+            setTimeout($('.pddErro').fadeToggle()
+                , 4000);
+            console.log(e);
+        }
+    });
 }

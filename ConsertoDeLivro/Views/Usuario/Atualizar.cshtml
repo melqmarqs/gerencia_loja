@@ -1,6 +1,8 @@
-﻿@model ConsertoDeLivro.Models.Usuario
+﻿@using ConsertoDeLivro.Models
+@model ConsertoDeLivro.Models.Usuario
 @{
     ViewBag.Title = "Atualizar usuário";
+    Usuario user = Session["Usuario"] as Usuario;
 }
 
 <link href="~/Content/FormsTelas.css" rel="stylesheet" type="text/css" />
@@ -107,7 +109,11 @@
         <hr />
         <div class="divBtns">
             <input type="submit" value="Atualizar" class="btn btn-success" />
-            @Html.ActionLink("Cancelar", "Lista", "Usuario", null, new { @class = "btn btn-danger" })
+            @if (user != null && !user.Adm && !user.Dev) {
+                @Html.ActionLink("Cancelar", "InfoUser", "Usuario", null, new { @class = "btn btn-danger" })
+            } else {
+                @Html.ActionLink("Cancelar", "Lista", "Usuario", null, new { @class = "btn btn-danger" })
+            }
         </div>
     </div>
 }
