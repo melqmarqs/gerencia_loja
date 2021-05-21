@@ -226,8 +226,8 @@ table {
 
 .mensagens .pddAceitar {
     border: 2px solid #3AAF57;
-    background-color: rgba(58, 175, 87, 0.3);
     border-radius: 10px;
+    background-color: rgba(58, 175, 87, 0.3);
 }
 
 .mensagens .pddFinalizar {
@@ -242,12 +242,33 @@ table {
     background-color: rgba(68, 193, 192, 0.3);
 }
 
+.mensagens .pddRecusar,
+.mensagens .pddApagar {
+    border: 2px solid #968E32;
+    border-radius: 10px;
+    background-color: rgba(150, 142, 50, 0.3);
+}
+
 .mensagens .pddErro {
+    border: 2px solid #B9503E;
     border-radius: 10px;
     background-color: rgba(185, 80, 62, 0.3);
-    border: 2px solid #B9503E;
 }
 
 .sttPedidos #preco {
     font-size: 1.5em;
+}
+
+.sttPedidos .red {
+    color: darkred;
+    padding: 3px;
+    border-radius: 4px;
+    background-color: rgba(185, 80, 62, 0.3);
+}
+
+.sttPedidos .yellow {
+    color: #736d27;
+    padding: 3px;
+    border-radius: 4px;
+    background-color: rgba(150, 142, 50, 0.3);
 }

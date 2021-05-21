@@ -342,3 +342,4 @@ C:\Users\Melq Marqs\Desktop\Dev\gerencia_loja\ConsertoDeLivro\bin\roslyn\vbc.rsp
 C:\Users\Melq Marqs\Desktop\Dev\gerencia_loja\ConsertoDeLivro\bin\roslyn\VBCSCompiler.exe
 C:\Users\Melq Marqs\Desktop\Dev\gerencia_loja\ConsertoDeLivro\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Melq Marqs\Desktop\Dev\gerencia_loja\ConsertoDeLivro\obj\Debug\ConsertoDeLivro.Migrations.MudarComprimentoParaAltura.resources
+C:\Users\Melq Marqs\Desktop\Dev\gerencia_loja\ConsertoDeLivro\obj\Debug\ConsertoDeLivro.Migrations.InsertRecusadoOnPedido.resources

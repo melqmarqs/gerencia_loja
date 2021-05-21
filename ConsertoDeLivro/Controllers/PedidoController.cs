@@ -42,6 +42,7 @@ namespace ConsertoDeLivro.Controllers {
             pedido.Aceito = false;
             pedido.Entregue = false;
             pedido.Feito = false;
+            pedido.Recusado = false;
             pedido.UsuarioID = (Session["Usuario"] as Usuario).UsuarioID;
             pedido.DataPedido = DateTime.Now.ToString("dd/MM/yyyy H:mm:ss");
             //pedido.Valor = "0";
@@ -67,15 +68,23 @@ namespace ConsertoDeLivro.Controllers {
             Usuario usuario = Session["Usuario"] as Usuario;
             List<Pedido> pedidos = new List<Pedido>();
             if (usuario != null && usuario.Adm)
-                pedidos = db.Pedidos.Where(pdd => !pdd.Aceito).OrderBy(ordem => ordem.PedidoID).ToList();
+                pedidos = db.Pedidos.Where(pdd => !pdd.Aceito && !pdd.Recusado).OrderBy(ordem => ordem.PedidoID).ToList();
             else
-                pedidos = db.Pedidos.Where(pdd => !pdd.Aceito && pdd.UsuarioID == usuario.UsuarioID).OrderByDescending(desc => desc.PedidoID).ToList();
+                pedidos = db.Pedidos.Where(pdd => !pdd.Aceito && !pdd.Recusado && pdd.UsuarioID == usuario.UsuarioID).OrderByDescending(desc => desc.PedidoID).ToList();
 
             return Json(pedidos, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult getPedidosRecusados() {
-            List<Pedido> pedidos = db.Pedidos.Where(pdd => !pdd.Aceito).OrderByDescending(ordem => ordem.PedidoID).ToList();
+            Usuario usuario = Session["Usuario"] as Usuario;
+            List<Pedido> pedidos = new List<Pedido>();
+            if (usuario != null) {
+                if (usuario.Adm)
+                    pedidos = db.Pedidos.Where(pdd => pdd.Recusado).OrderByDescending(desc => desc.PedidoID).ToList();
+                else
+                    pedidos = db.Pedidos.Where(pdd => pdd.Recusado && pdd.UsuarioID == usuario.UsuarioID).OrderByDescending(desc => desc.PedidoID).ToList();
+            }
+
             return Json(pedidos, JsonRequestBehavior.AllowGet);
         }
 
@@ -94,9 +103,12 @@ namespace ConsertoDeLivro.Controllers {
             try {
                 var pedido = db.Pedidos.Where(pdd => pdd.PedidoID == idPedido).ToArray()[0];
                 if (pedido != null) {
+                    pedido.Recusado = false;
                     pedido.Aceito = true;
+
                     db.Entry(pedido).State = EntityState.Modified;
                     db.SaveChanges();
+
                     return Json("Sucesso", JsonRequestBehavior.AllowGet);
                 }
             } catch (Exception) {
@@ -110,10 +122,13 @@ namespace ConsertoDeLivro.Controllers {
             try {
                 var pedido = db.Pedidos.Where(pdd => pdd.PedidoID == idPedido).ToArray()[0];
                 if (pedido != null) {
+                    pedido.Recusado = false;
                     pedido.Aceito = true;
                     pedido.Feito = true;
+                    
                     db.Entry(pedido).State = EntityState.Modified;
                     db.SaveChanges();
+                    
                     return Json("Sucesso", JsonRequestBehavior.AllowGet);
                 }
             } catch (Exception) {
@@ -127,14 +142,54 @@ namespace ConsertoDeLivro.Controllers {
             try {
                 var pedido = db.Pedidos.Where(pdd => pdd.PedidoID == idPedido).ToArray()[0];
                 if (pedido != null) {
+                    pedido.Recusado = false;
                     pedido.Aceito = true;
                     pedido.Feito = true;
                     pedido.Entregue = true;
+
                     db.Entry(pedido).State = EntityState.Modified;
                     db.SaveChanges();
+                    
                     return Json("Sucesso", JsonRequestBehavior.AllowGet);
                 }
             } catch (Exception e) {
+                return Json("Erro", JsonRequestBehavior.AllowGet);
+            }
+
+            return Json("Erro", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult setRecusarPedido(int idPedido) {
+            try {
+                Pedido pedido = db.Pedidos.Where(pdd => pdd.PedidoID == idPedido).ToArray()[0];
+                if (pedido != null) {
+                    pedido.Aceito = false;
+                    pedido.Feito = false;
+                    pedido.Entregue = false;
+                    pedido.Recusado = true;
+
+                    db.Entry(pedido).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Json("Sucesso", JsonRequestBehavior.AllowGet);
+                }
+            } catch (Exception e) {
+                return Json("Erro", JsonRequestBehavior.AllowGet);
+            }
+
+            return Json("Erro", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult setApagarPedido(int idPedido) {
+            try {
+                Pedido pedido = db.Pedidos.Where(pdd => pdd.PedidoID == idPedido).First();
+                if (pedido != null) {
+                    db.Entry(pedido).State = EntityState.Deleted;
+                    db.SaveChanges();
+
+                    return Json("Sucesso", JsonRequestBehavior.AllowGet);
+                }
+            } catch (Exception) {
                 return Json("Erro", JsonRequestBehavior.AllowGet);
             }
 

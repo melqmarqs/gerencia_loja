@@ -32,5 +32,7 @@ namespace ConsertoDeLivro.Models {
         public string Valor { get; set; }
 
         public string Descricao { get; set; }
+
+        public bool Recusado { get; set; }
     }
 }

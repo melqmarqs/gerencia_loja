@@ -518,6 +518,10 @@
     <Compile Include="Migrations\202105180044378_MudarComprimentoParaAltura.designer.cs">
       <DependentUpon>202105180044378_MudarComprimentoParaAltura.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105211325235_InsertRecusadoOnPedido.cs" />
+    <Compile Include="Migrations\202105211325235_InsertRecusadoOnPedido.designer.cs">
+      <DependentUpon>202105211325235_InsertRecusadoOnPedido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ConsertoDeLivroContext.cs" />
     <Compile Include="Models\Endereco.cs" />
@@ -656,6 +660,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105180044378_MudarComprimentoParaAltura.resx">
       <DependentUpon>202105180044378_MudarComprimentoParaAltura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105211325235_InsertRecusadoOnPedido.resx">
+      <DependentUpon>202105211325235_InsertRecusadoOnPedido.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

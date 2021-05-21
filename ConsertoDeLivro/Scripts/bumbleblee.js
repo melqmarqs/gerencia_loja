@@ -8,6 +8,8 @@ var exp;
 const aceitar = 'Aceitar';
 const finalizar = 'Finalizar';
 const entregar = 'Entregar';
+const recusar = 'Recusar';
+const apagar = 'Apagar';
 
 function trocarSenha() {
     email = $('input[name="Email"]').val();
@@ -214,38 +216,44 @@ function exibirDiv(tag) {
                     novoClone.querySelector('#material').textContent = dados.Material.Nome;
                     novoClone.querySelector('#descricao').textContent = dados.Descricao;
 
+
                     if (novoClone.querySelector('#btnAcc'))
                         novoClone.querySelector('#btnAcc').setAttribute('onclick', 'acaoPedido(' + dados.PedidoID + ', \'' + aceitar + '\', \'' + tag.id + '\')');
 
                     if (novoClone.querySelector('#btnFinalizar'))
                         novoClone.querySelector('#btnFinalizar').setAttribute('onclick', 'acaoPedido(' + dados.PedidoID + ', \'' + finalizar + '\', \'' + tag.id + '\')');
 
-                    if (dados.Usuario.Adm) {
-                        if (dados.Entregue) {
-                            if (novoClone.querySelector('#infoEntregue') && novoClone.querySelector('#btnEntregar')) {
-                                novoClone.querySelector('#btnEntregar').setAttribute('hidden', '');
-                                novoClone.querySelector('#btnEntregar').removeAttribute('class');
-                                novoClone.querySelector('#infoEntregue').removeAttribute('hidden');
-                            }
-                        } else {
-                            if (novoClone.querySelector('#infoEntregue') && novoClone.querySelector('#btnEntregar')) {
-                                novoClone.querySelector('#infoEntregue').setAttribute('hidden', '');
-                                novoClone.querySelector('#btnEntregar').removeAttribute('hidden');
-                                novoClone.querySelector('#btnEntregar').setAttribute('btnpedido', dados.PedidoID);
-                                novoClone.querySelector('#btnEntregar').setAttribute('onclick', 'acaoPedido(' + dados.PedidoID + ', \'' + entregar + '\', \'' + tag.id + '\')');
-                            }
+                    if (novoClone.querySelector('#btnRecusar'))
+                        novoClone.querySelector('#btnRecusar').setAttribute('onclick', 'acaoPedido(' + dados.PedidoID + ', \'' + recusar + '\', \'' + tag.id + '\')');
+
+                    if (novoClone.querySelector('#btnApagar'))
+                        novoClone.querySelector('#btnApagar').setAttribute('onclick', 'acaoPedido(' + dados.PedidoID + ', \'' + apagar + '\', \'' + tag.id + '\')');
+
+                    if (dados.Entregue) {
+
+                        if (novoClone.querySelector('#infoEntregue') && novoClone.querySelector('#btnEntregar')) {
+                            novoClone.querySelector('#btnEntregar').setAttribute('hidden', '');
+                            novoClone.querySelector('#btnEntregar').removeAttribute('class');
+                            novoClone.querySelector('#infoEntregue').removeAttribute('hidden');
                         }
+
+                        if (novoClone.querySelector('#infoRetirar') && novoClone.querySelector('#infoRetirado')) {
+                            novoClone.querySelector('#infoRetirar').setAttribute('hidden', '');
+                            novoClone.querySelector('#infoRetirado').removeAttribute('hidden');
+                        }
+
                     } else {
-                        if (dados.Entregue) {
-                            if (novoClone.querySelector('#infoRetirar') && novoClone.querySelector('#infoRetirado')) {
-                                novoClone.querySelector('#infoRetirar').setAttribute('hidden', '');
-                                novoClone.querySelector('#infoRetirado').removeAttribute('hidden');
-                            }
-                        } else {
-                            if (novoClone.querySelector('#infoRetirar') && novoClone.querySelector('#infoRetirado')) {
-                                novoClone.querySelector('#infoRetirar').removeAttribute('hidden');
-                                novoClone.querySelector('#infoRetirado').setAttribute('hidden', '');
-                            }
+
+                        if (novoClone.querySelector('#infoEntregue') && novoClone.querySelector('#btnEntregar')) {
+                            novoClone.querySelector('#infoEntregue').setAttribute('hidden', '');
+                            novoClone.querySelector('#btnEntregar').removeAttribute('hidden');
+                            novoClone.querySelector('#btnEntregar').setAttribute('btnpedido', dados.PedidoID);
+                            novoClone.querySelector('#btnEntregar').setAttribute('onclick', 'acaoPedido(' + dados.PedidoID + ', \'' + entregar + '\', \'' + tag.id + '\')');
+                        }
+
+                        if (novoClone.querySelector('#infoRetirar') && novoClone.querySelector('#infoRetirado')) {
+                            novoClone.querySelector('#infoRetirar').removeAttribute('hidden');
+                            novoClone.querySelector('#infoRetirado').setAttribute('hidden', '');
                         }
                     }
 
@@ -284,27 +292,28 @@ function acaoPedido(idPedido, acao, num) {
         success(data) {
             if (data == 'Sucesso') {
                 if (acao == 'Entregar') {
-                    let tag = $('span[btnpedido=\'' + idPedido + '\']').next();
+                    let labelEntregue = $('span[btnpedido=\'' + idPedido + '\']').next();
                     $('span[btnpedido=\'' + idPedido + '\']').remove();
-                    tag.fadeIn('slow');
+                    labelEntregue.fadeIn('slow');
                 } else {
                     $('div[pedido="' + idPedido + '"]').fadeOut();
                     $('.pdd' + acao).fadeToggle();
-                    setTimeout($('.pdd' + acao).fadeToggle()
+                    setTimeout(function () { $('.pdd' + acao).fadeToggle() }
                         , 3000);
-                    $('#num' + num).text(' - ' + parseInt($('#num' + num).text().replace(' - ', '')) - 1);
+                    $('#num' + num).text(' - ' + (parseInt($('#num' + num).text().replace(' - ', '')) - 1));
                 }
             } else {
                 $('.pddErro').fadeToggle();
-                setTimeout($('.pddErro').fadeToggle()
+                setTimeout(function () { $('.pddErro').fadeToggle() }
                     , 4000);
             }
         },
         erro(e) {
             $('.pddErro').fadeToggle();
-            setTimeout($('.pddErro').fadeToggle()
+            setTimeout(function () { $('.pddErro').fadeToggle() }
                 , 4000);
             console.log(e);
         }
     });
+
 }

@@ -19,10 +19,16 @@
                     <label>O pedido foi aceitado com sucesso.</label>
                 </div>
                 <div class="pddFinalizar" style="display: none;">
-                    <label>O status do pedido mudou para finalizado.</label>
+                    <label>O status do pedido mudou para Finalizado.</label>
                 </div>
                 <div class="pddEntregar" style="display: none;">
                     <label>O pedido foi concluído e o status do pedido mudou para entregue.</label>
+                </div>
+                <div class="pddRecusar" style="display: none;">
+                    <label>O status do pedido mudou para Recusado.</label>
+                </div>
+                <div class="pddApagar" style="display: none;">
+                    <label>O pedido foi apagado.</label>
                 </div>
                 <div class="pddErro" style="display: none;">
                     <label>Houve um erro: entre em contato com o administrador do sistema.</label>
@@ -54,8 +60,8 @@
                                 <span id="infoEntregue" class="bold">Pedido Entregue</span>
                                 <br />
                             } else {
-                                <span id="infoRetirar" class="bold">Retirar Produto</span>
-                                <span id="infoRetirado" class="bold">Produto Retirado</span>
+                                <span id="infoRetirar" class="bold red">Aguardando Retirada</span>
+                                <span id="infoRetirado" class="bold yellow">Produto Retirado</span>
                                 <br />
                             }
                             <label>R$ <span id="preco"></span></label>
@@ -114,7 +120,10 @@
                         </div>
                         <div class="btnPdd">
                             @if (usuario.Adm) {
+                                <span id="btnRecusar" class="btn btn-danger btn-sm">Recusar Pedido</span>
                                 <span id="btnAcc" class="btn btn-success btn-sm">Aceitar Pedido</span><br />
+                            } else {
+                                <span id="btnApagar" class="btn btn-danger btn-sm">Apagar Pedido</span><br />
                             }
                             <label>R$ <span id="preco"></span></label>
                         </div>
@@ -142,9 +151,6 @@
                             <label>Descrição: <span id="descricao"></span></label>
                         </div>
                         <div class="btnPdd">
-                            @if (usuario.Adm) {
-                                <span id="btnEdt"></span><br />
-                            }
                             <label>R$ <span id="preco"></span></label>
                         </div>
                     </div>
@@ -153,7 +159,7 @@
             <br />
             <div>
                 @Html.ActionLink("Voltar", "Index", "ConsertoDeLivro", null, new { @class = "btn btn-warning" })
-                @if (!usuario.Adm || !usuario.Dev) {
+                @if (!usuario.Adm) {
                     @Html.ActionLink("Novo pedido", "CriarNovoPedido", "Pedido", null, new { @class = "btn btn-success" })
                 }
             </div>
