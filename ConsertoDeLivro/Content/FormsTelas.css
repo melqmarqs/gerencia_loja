@@ -224,7 +224,8 @@ table {
     padding: 7px;
 }
 
-.mensagens .pddAceitar {
+.mensagens .pddAceitar,
+.mensagens .pddAvaliar {
     border: 2px solid #3AAF57;
     border-radius: 10px;
     background-color: rgba(58, 175, 87, 0.3);
@@ -271,4 +272,107 @@ table {
     padding: 3px;
     border-radius: 4px;
     background-color: rgba(150, 142, 50, 0.3);
+}
+
+.lblInfo {
+    text-transform: uppercase;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(151, 144, 252);
+    margin-top: 20px;
+}
+
+.infoPdd {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.flexCCC {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mAvaliar {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.mAvaliar .avaliar {
+    border-radius: 7px;
+    padding: 10px;
+    width: auto;
+    height: auto;
+    background-color: antiquewhite;
+}
+
+.mAvaliar span {
+    text-transform: uppercase;
+}
+
+.flexRE {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+}
+
+.allWH {
+    height: 100%;
+    width: 100%;
+}
+
+.mgHorzDez {
+    margin: 0px 10px;
+}
+
+.cursorPt {
+    cursor: pointer;
+}
+
+.notas {
+    padding: 5px;
+    font-size: 1.3em;
+    justify-content: space-around;
+}
+
+.notas span {
+    margin-right: 2px;
+    padding: 3px;
+    border-radius: 3px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pessimo {
+    background-color: rgba(163, 54, 54, 0.7);
+}
+
+.ruim {
+    background-color: rgba(163, 83, 54, 0.7);
+}
+
+.mediano {
+    background-color: rgba(163, 148, 54, 0.7);
+}
+
+.bom {
+    background-color: rgba(148, 163, 54, 0.7);
+}
+
+.muito-bom {
+    background-color: rgba(112, 163, 54, 0.7);
+}
+
+.otimo {
+    background-color: rgba(54, 163, 61, 0.7);
 }

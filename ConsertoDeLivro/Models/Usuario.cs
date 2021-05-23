@@ -55,5 +55,21 @@ namespace ConsertoDeLivro.Models {
         public int EstadoID { get; set; }
 
         public virtual Estado Estado { get; set; }
+
+        public String getEndereco() {
+            string end = Logradouro + ", nº " + Numero + ", " + Bairro + " - " + Cidade + "/" + Estado.UF;
+            return end;
+        }
+
+        public String getNumCelularFormatado() {
+            string novoNum;
+            if (Celular.Length == 11) {
+                novoNum = Celular.Insert(0, "(").Insert(3, ") ").Insert(10, "-");
+            } else {
+                novoNum = Celular.Insert(6, "-");
+            }
+
+            return novoNum;
+        }
     }
 }

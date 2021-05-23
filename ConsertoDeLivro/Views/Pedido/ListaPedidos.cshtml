@@ -15,23 +15,26 @@
         <div class="divCentral">
             <div class="mensagens">
                 <label>@TempData["PedidoAguardando"]</label>
+                <div class="pddAvaliar" style="display: none;">
+                    <label><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;A avaliação foi registrada.</label>
+                </div>
                 <div class="pddAceitar" style="display: none;">
-                    <label>O pedido foi aceitado com sucesso.</label>
+                    <label><span class="glyphicon glyphicon-ok"></span>&nbsp;O pedido foi aceitado com sucesso.</label>
                 </div>
                 <div class="pddFinalizar" style="display: none;">
-                    <label>O status do pedido mudou para Finalizado.</label>
+                    <label><span class="glyphicon glyphicon-tags"></span>&nbsp; O status do pedido mudou para Finalizado.</label>
                 </div>
                 <div class="pddEntregar" style="display: none;">
-                    <label>O pedido foi concluído e o status do pedido mudou para entregue.</label>
+                    <label><span class="glyphicon glyphicon-gift"></span>&nbsp;O pedido foi concluído e o status do pedido mudou para Entregue.</label>
                 </div>
                 <div class="pddRecusar" style="display: none;">
-                    <label>O status do pedido mudou para Recusado.</label>
+                    <label><span class="glyphicon glyphicon-thumbs-down"></span>&nbsp;O status do pedido mudou para Recusado.</label>
                 </div>
                 <div class="pddApagar" style="display: none;">
-                    <label>O pedido foi apagado.</label>
+                    <label><span class="glyphicon glyphicon-trash"></span>&nbsp;O pedido foi apagado.</label>
                 </div>
                 <div class="pddErro" style="display: none;">
-                    <label>Houve um erro: entre em contato com o administrador do sistema.</label>
+                    <label><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Houve um erro: entre em contato com o administrador do sistema.</label>
                 </div>
             </div>
 
@@ -41,8 +44,10 @@
                     <div class="pdd" hidden>
                         <div>
                             <label>Cod. Pedido: <span id="idPedido"></span></label><br />
-                            <label id="cliente"></label><br />
-                            <label id="numCelular"></label><br />
+                            @if (usuario.Adm) {
+                                <label id="cliente"></label><br />
+                                <label id="numCelular"></label><br />
+                            }
                         </div>
                         <div>
                             <label>Largura: <span id="largura"></span>cm </label><br />
@@ -55,8 +60,9 @@
                             <label>Descrição: <span id="descricao"></span></label>
                         </div>
                         <div class="btnPdd">
+                            <span class="btn btn-primary btn-xs" id="avaliarPedido">Avaliar Pedido</span>
                             @if (usuario.Adm) {
-                                <span id="btnEntregar" class="btn btn-success btn-sm">Entregar Pedido</span>
+                                <span id="btnEntregar" class="btn btn-success btn-xs">Entregar Pedido</span>
                                 <span id="infoEntregue" class="bold">Pedido Entregue</span>
                                 <br />
                             } else {
@@ -64,7 +70,8 @@
                                 <span id="infoRetirado" class="bold yellow">Produto Retirado</span>
                                 <br />
                             }
-                            <label>R$ <span id="preco"></span></label>
+                            <label>R$ <span id="preco"></span></label><br />
+                            <a id="detalhesPdd" target="_blank" href="#">Detalhes Pedido</a>
                         </div>
                     </div>
                 </div>
@@ -76,8 +83,10 @@
                     <div class="pdd" hidden>
                         <div>
                             <label>Cod. Pedido: <span id="idPedido"></span></label><br />
-                            <label id="cliente"></label><br />
-                            <label id="numCelular"></label><br />
+                            @if (usuario.Adm) {
+                                <label id="cliente"></label><br />
+                                <label id="numCelular"></label><br />
+                            }
                         </div>
                         <div>
                             <label>Largura: <span id="largura"></span>cm </label><br />
@@ -91,9 +100,10 @@
                         </div>
                         <div class="btnPdd">
                             @if (usuario.Adm) {
-                                <span id="btnFinalizar" class="btn btn-primary btn-sm">Finalizar Pedido</span><br />
+                                <span id="btnFinalizar" class="btn btn-primary btn-xs">Finalizar Pedido</span><br />
                             }
-                            <label>R$ <span id="preco"></span></label>
+                            <label>R$ <span id="preco"></span></label><br />
+                            <a id="detalhesPdd" target="_blank" href="#">Detalhes Pedido</a>
                         </div>
                     </div>
                 </div>
@@ -105,8 +115,10 @@
                     <div class="pdd" hidden>
                         <div>
                             <label>Cod. Pedido: <span id="idPedido"></span></label><br />
-                            <label id="cliente"></label><br />
-                            <label id="numCelular"></label><br />
+                            @if (usuario.Adm) {
+                                <label id="cliente"></label><br />
+                                <label id="numCelular"></label><br />
+                            }
                         </div>
                         <div>
                             <label>Largura: <span id="largura"></span>cm </label><br />
@@ -120,12 +132,13 @@
                         </div>
                         <div class="btnPdd">
                             @if (usuario.Adm) {
-                                <span id="btnRecusar" class="btn btn-danger btn-sm">Recusar Pedido</span>
-                                <span id="btnAcc" class="btn btn-success btn-sm">Aceitar Pedido</span><br />
+                                <span id="btnRecusar" class="btn btn-danger btn-xs">Recusar Pedido</span>
+                                <span id="btnAcc" class="btn btn-success btn-xs">Aceitar Pedido</span><br />
                             } else {
-                                <span id="btnApagar" class="btn btn-danger btn-sm">Apagar Pedido</span><br />
+                                <span id="btnApagar" class="btn btn-danger btn-xs">Apagar Pedido</span><br />
                             }
-                            <label>R$ <span id="preco"></span></label>
+                            <label>R$ <span id="preco"></span></label><br />
+                            <a id="detalhesPdd" target="_blank" href="#">Detalhes Pedido</a>
                         </div>
                     </div>
                 </div>
@@ -137,8 +150,10 @@
                     <div class="pdd" hidden>
                         <div>
                             <label>Cod. Pedido: <span id="idPedido"></span></label><br />
-                            <label id="cliente"></label><br />
-                            <label id="numCelular"></label><br />
+                            @if (usuario.Adm) {
+                                <label id="cliente"></label><br />
+                                <label id="numCelular"></label><br />
+                            }
                         </div>
                         <div>
                             <label>Largura: <span id="largura"></span>cm </label><br />
@@ -151,7 +166,8 @@
                             <label>Descrição: <span id="descricao"></span></label>
                         </div>
                         <div class="btnPdd">
-                            <label>R$ <span id="preco"></span></label>
+                            <label>R$ <span id="preco"></span></label><br />
+                            <a id="detalhesPdd" target="_blank" href="#">Detalhes Pedido</a>
                         </div>
                     </div>
                 </div>
@@ -165,4 +181,36 @@
             </div>
         </div>
     }
+</div>
+
+<div class="mAvaliar" hidden>
+    <div class="allWH flexCCC">
+        <div class="avaliar">
+            <div class="flexRE">
+                <span class="glyphicon glyphicon-remove cursorPt" onclick="avaliacao(true)"></span>
+            </div>
+            <div class="flexCCC mgHorzDez">
+                <label>Qual nota você daria para o serviço realizado no seu livro?</label>
+                <div>
+                    <label id="livro">Livro</label> -
+                    <label id="autor">Autor</label>
+                </div>
+                <div class="notas flexRE">
+                    <span class="pessimo" onclick="selecionaNum(this)">1</span>
+                    <span class="ruim" onclick="selecionaNum(this)">2</span>
+                    <span class="ruim" onclick="selecionaNum(this)">3</span>
+                    <span class="ruim" onclick="selecionaNum(this)">4</span>
+                    <span class="mediano" onclick="selecionaNum(this)">5</span>
+                    <span class="mediano" onclick="selecionaNum(this)">6</span>
+                    <span class="bom" onclick="selecionaNum(this)">7</span>
+                    <span class="bom" onclick="selecionaNum(this)">8</span>
+                    <span class="muito-bom" onclick="selecionaNum(this)">9</span>
+                    <span class="otimo" onclick="selecionaNum(this)">10</span>
+                </div>
+                <div>
+                    <span class="btn btn-primary btn-sm" onclick="salvarAvaliacao()">Salvar avaliação</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -53,6 +53,20 @@ namespace ConsertoDeLivro.Controllers {
             return RedirectToAction("ListaPedidos", new { exibirMsg = true });
         }
 
+        public ActionResult DetalhesPedido(int idPedido) {
+            Usuario usuario = Session["Usuario"] as Usuario;
+            Pedido pedido = new Pedido();
+            if (usuario != null) {
+                if (usuario.Adm) {
+                    pedido = db.Pedidos.Where(pdd => pdd.PedidoID == idPedido).First();
+                } else {
+                    pedido = db.Pedidos.Where(pdd => pdd.PedidoID == idPedido && usuario.UsuarioID == pdd.UsuarioID).First();
+                }
+            }
+
+            return View(pedido);
+        }
+
         public ActionResult getPedidosAceitos() {
             Usuario usuario = Session["Usuario"] as Usuario;
             List<Pedido> pedidos = new List<Pedido>();
@@ -109,13 +123,13 @@ namespace ConsertoDeLivro.Controllers {
                     db.Entry(pedido).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    return Json("Sucesso", JsonRequestBehavior.AllowGet);
+                    return Json(Resposta.Sucesso, JsonRequestBehavior.AllowGet);
+                } else {
+                    return Json("Atenção: não foi encontrado nenhum pedido.", JsonRequestBehavior.AllowGet);
                 }
             } catch (Exception) {
-                return Json("Erro", JsonRequestBehavior.AllowGet);
+                return Json(Resposta.Erro, JsonRequestBehavior.AllowGet);
             }
-
-            return Json("Erro", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult setFinalizarPedido(int idPedido) {
@@ -125,17 +139,17 @@ namespace ConsertoDeLivro.Controllers {
                     pedido.Recusado = false;
                     pedido.Aceito = true;
                     pedido.Feito = true;
-                    
+
                     db.Entry(pedido).State = EntityState.Modified;
                     db.SaveChanges();
-                    
-                    return Json("Sucesso", JsonRequestBehavior.AllowGet);
+
+                    return Json(Resposta.Sucesso, JsonRequestBehavior.AllowGet);
+                } else {
+                    return Json("Atenção: não foi encontrado nenhum pedido.", JsonRequestBehavior.AllowGet);
                 }
             } catch (Exception) {
-                return Json("Erro", JsonRequestBehavior.AllowGet);
+                return Json(Resposta.Erro, JsonRequestBehavior.AllowGet);
             }
-
-            return Json("Erro", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult setEntregarPedido(int idPedido) {
@@ -149,14 +163,14 @@ namespace ConsertoDeLivro.Controllers {
 
                     db.Entry(pedido).State = EntityState.Modified;
                     db.SaveChanges();
-                    
-                    return Json("Sucesso", JsonRequestBehavior.AllowGet);
+
+                    return Json(Resposta.Sucesso, JsonRequestBehavior.AllowGet);
+                } else {
+                    return Json("Atenção: não foi encontrado nenhum pedido.", JsonRequestBehavior.AllowGet);
                 }
             } catch (Exception e) {
-                return Json("Erro", JsonRequestBehavior.AllowGet);
+                return Json(Resposta.Erro, JsonRequestBehavior.AllowGet);
             }
-
-            return Json("Erro", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult setRecusarPedido(int idPedido) {
@@ -171,13 +185,13 @@ namespace ConsertoDeLivro.Controllers {
                     db.Entry(pedido).State = EntityState.Modified;
                     db.SaveChanges();
 
-                    return Json("Sucesso", JsonRequestBehavior.AllowGet);
+                    return Json(Resposta.Sucesso, JsonRequestBehavior.AllowGet);
+                } else {
+                    return Json("Atenção: não foi encontrado nenhum pedido.", JsonRequestBehavior.AllowGet);
                 }
             } catch (Exception e) {
-                return Json("Erro", JsonRequestBehavior.AllowGet);
+                return Json(Resposta.Erro, JsonRequestBehavior.AllowGet);
             }
-
-            return Json("Erro", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult setApagarPedido(int idPedido) {
@@ -187,13 +201,41 @@ namespace ConsertoDeLivro.Controllers {
                     db.Entry(pedido).State = EntityState.Deleted;
                     db.SaveChanges();
 
-                    return Json("Sucesso", JsonRequestBehavior.AllowGet);
+                    return Json(Resposta.Sucesso, JsonRequestBehavior.AllowGet);
+                } else {
+                    return Json("Atenção: não foi encontrado nenhum pedido.", JsonRequestBehavior.AllowGet);
                 }
             } catch (Exception) {
-                return Json("Erro", JsonRequestBehavior.AllowGet);
+                return Json(Resposta.Erro, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult getPedidoById(int idPedido) {
+            Pedido pedido = db.Pedidos.Where(pdd => pdd.PedidoID == idPedido).First();
+            if (pedido != null) {
+                return Json(pedido, JsonRequestBehavior.AllowGet);
             }
 
-            return Json("Erro", JsonRequestBehavior.AllowGet);
+            return Json(Resposta.Erro, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult setAvaliacaoEComentario(int idPedido, int avaliacao, string comentario) {
+            try {
+                Pedido pedido = db.Pedidos.Where(pdd => pdd.PedidoID == idPedido).FirstOrDefault();
+                if (pedido != null) {
+                    pedido.Comentario = comentario;
+                    pedido.Avaliacao = avaliacao;
+
+                    db.Entry(pedido).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Json(Resposta.Sucesso, JsonRequestBehavior.AllowGet);
+                } else {
+                    return Json("Atenção: não foi encontrado nenhum pedido.", JsonRequestBehavior.AllowGet);
+                }
+            } catch (Exception e) {
+                return Json(e.Message, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

@@ -41,7 +41,6 @@
         </div>
         <div class="divCorpo">
             <div>
-                @*@Html.LabelFor(dados => dados.CEP)*@
                 <label>CEP&nbsp;<a href="https://buscacepinter.correios.com.br/app/endereco/index.php?t" class="aCep" target="_blank">Não sabe seu cep? Clique aqui</a></label>
                 @Html.EditorFor(dados => dados.CEP)
                 @Html.ValidationMessageFor(dados => dados.CEP, "", new { @class = "text-danger" })

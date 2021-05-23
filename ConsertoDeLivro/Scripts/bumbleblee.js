@@ -11,6 +11,10 @@ const entregar = 'Entregar';
 const recusar = 'Recusar';
 const apagar = 'Apagar';
 
+$('document').ready(function () {
+
+});
+
 function trocarSenha() {
     email = $('input[name="Email"]').val();
     cpf = $('input[name="CPF"]').val();
@@ -204,9 +208,14 @@ function exibirDiv(tag) {
                     novoClone.setAttribute('pedido', dados.PedidoID);
 
                     novoClone.querySelector('#idPedido').textContent = dados.PedidoID;
-                    novoClone.querySelector('#cliente').textContent = dados.Usuario.Nome + ' ' + dados.Usuario.UltimoNome;
-                    let numCelular = formatarNumCelular(dados.Usuario.Celular);
-                    novoClone.querySelector('#numCelular').textContent = numCelular;
+
+                    if (novoClone.querySelector('#cliente'))
+                        novoClone.querySelector('#cliente').textContent = dados.Usuario.Nome + ' ' + dados.Usuario.UltimoNome;
+
+                    if (novoClone.querySelector('#numCelular')) {
+                        let numCelular = formatarNumCelular(dados.Usuario.Celular);
+                        novoClone.querySelector('#numCelular').textContent = numCelular;
+                    }
 
                     novoClone.querySelector('#largura').textContent = dados.Largura;
                     novoClone.querySelector('#altura').textContent = dados.Altura;
@@ -216,6 +225,8 @@ function exibirDiv(tag) {
                     novoClone.querySelector('#material').textContent = dados.Material.Nome;
                     novoClone.querySelector('#descricao').textContent = dados.Descricao;
 
+                    if (novoClone.querySelector('#avaliarPedido'))
+                        novoClone.querySelector('#avaliarPedido').setAttribute('onclick', 'avaliacao(false, ' + dados.PedidoID + ')');
 
                     if (novoClone.querySelector('#btnAcc'))
                         novoClone.querySelector('#btnAcc').setAttribute('onclick', 'acaoPedido(' + dados.PedidoID + ', \'' + aceitar + '\', \'' + tag.id + '\')');
@@ -259,6 +270,9 @@ function exibirDiv(tag) {
 
                     novoClone.querySelector('#preco').textContent = dados.Valor;
 
+                    if (novoClone.querySelector('#detalhesPdd'))
+                        novoClone.querySelector('#detalhesPdd').setAttribute('href', '/Pedido/DetalhesPedido?idPedido=' + dados.PedidoID);
+
                     elem.append(novoClone);
                 })
 
@@ -290,7 +304,7 @@ function acaoPedido(idPedido, acao, num) {
         dataType: 'json',
         method: 'get',
         success(data) {
-            if (data == 'Sucesso') {
+            if (data == 1) {
                 if (acao == 'Entregar') {
                     let labelEntregue = $('span[btnpedido=\'' + idPedido + '\']').next();
                     $('span[btnpedido=\'' + idPedido + '\']').remove();
@@ -303,9 +317,10 @@ function acaoPedido(idPedido, acao, num) {
                     $('#num' + num).text(' - ' + (parseInt($('#num' + num).text().replace(' - ', '')) - 1));
                 }
             } else {
-                $('.pddErro').fadeToggle();
-                setTimeout(function () { $('.pddErro').fadeToggle() }
-                    , 4000);
+                //$('.pddErro').fadeToggle();
+                //setTimeout(function () { $('.pddErro').fadeToggle() }
+                //    , 4000);
+                alert(data);
             }
         },
         erro(e) {
@@ -316,4 +331,78 @@ function acaoPedido(idPedido, acao, num) {
         }
     });
 
+}
+
+function avaliacao(fechar, idPedido) {
+    if (fechar) {
+        $('.mAvaliar').fadeOut();
+        $('html, body').css('overflow', 'auto');
+
+        $.each($('[selecionado]').parent().children(), function (index, elem) {
+            elem.style = 'opacity: 1';
+        });
+
+        $('[selecionado]').removeAttr('selecionado');
+
+    } else {
+
+        $.ajax({
+            url: '/Pedido/getPedidoById',
+            data: { idPedido: idPedido },
+            method: 'get',
+            dataType: 'json',
+            success(data) {
+                if (data != null && data != 'Erro') {
+                    $('#livro').text(data.NomeLivro);
+                    $('#autor').text(data.AutorLivro);
+
+                    $('.mAvaliar').fadeIn();
+                    $('html, body').css('overflow', 'hidden');
+
+                } else {
+
+                    $('.pddErro').fadeToggle();
+                    setTimeout(function () {
+                        $('.pddErro').fadeToggle();
+                    }, 4000);
+
+                    console.log(data);
+
+                }
+            },
+            error(e) {
+
+                $('.pddErro').fadeToggle();
+                setTimeout(function () {
+                    $('.pddErro').fadeToggle();
+                }, 5000);
+
+                console.log(e.statusText);
+            }
+        });
+    }
+}
+
+function selecionaNum(tag) {
+
+    $.each(tag.parentNode.children, function (index, elem) {
+        if (tag == elem) {
+            elem.style = 'opacity: 1';
+            elem.setAttribute('selecionado', '');
+        } else {
+            elem.style = 'opacity: 0.5';
+            elem.removeAttribute('selecionado');
+        }
+    });
+}
+
+function salvarAvaliacao() {
+    console.log($('.mAvaliar [selecionado]').text());
+
+    $('.pddAvaliar').fadeToggle();
+    setTimeout(function () {
+        $('.pddAvaliar').fadeToggle()
+    }, 4000);
+
+    avaliacao(true);
 }

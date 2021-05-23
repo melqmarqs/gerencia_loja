@@ -50,6 +50,16 @@
                 </div>
                 <div class="dados">
                     <div>
+                        <label>Autor</label>
+                        @Html.TextBoxFor(model => model.AutorLivro, new { @placeholder="Ex: Machado de Assis", @maxlength="25", @style="width: 192px"})
+                    </div>
+                    <div>
+                        <label>Nome do livro</label>
+                        @Html.TextBoxFor(model => model.NomeLivro, new { @placeholder="Ex: Dom Casmurro", @maxlength = "35", @style = "width: 220px" })
+                    </div>
+                </div>
+                <div class="dados">
+                    <div>
                         <label>Descrição</label>
                         @Html.TextAreaFor(model => model.Descricao, new { @cols = "50", @rows = "6", @maxlength = "200" })
                     </div>
@@ -87,6 +97,7 @@
                 Após realizar o seu pedido, o mesmo ficará com o status "Aguardando". Quando o status mudar para "Confirmado". Você precisará levar o seu livro ao endereço abaixo:
                 <br />
                 @end.getEndCurto()
+                @Html.ActionLink("Mapa", "Contato", "ConsertoDeLivro")
             </label>
         </div>
 

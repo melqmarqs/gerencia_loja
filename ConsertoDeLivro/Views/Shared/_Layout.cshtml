@@ -29,6 +29,8 @@
                         @Html.ActionLink("Usuarios", "Lista", "Usuario")
                         @Html.ActionLink("Materiais", "ListaMateriais", "Material", null, new { onclick = "material()" })
                         @Html.ActionLink("Pedidos", "ListaPedidos", "Pedido")
+                    } else {
+                        @Html.ActionLink("Meus pedidos", "ListaPedidos", "Pedido")
                     }
                 }
             }
