@@ -71,12 +71,12 @@ namespace ConsertoDeLivro.Controllers {
         }
 
         public ActionResult getMaterialById(int id) {
-            var material = db.Materiais.Where(mat => mat.Id == id).ToList();
+            var material = db.Materiais.Where(mat => mat.Id == id).FirstOrDefault();
             if (material != null) {
-                return Json(material.ElementAt(0), JsonRequestBehavior.AllowGet);
+                return Json(material, JsonRequestBehavior.AllowGet);
             }
 
-            return Json("Sem dados", JsonRequestBehavior.AllowGet);
+            return Json(Resposta.Falha, JsonRequestBehavior.AllowGet);
         }
     }
 }

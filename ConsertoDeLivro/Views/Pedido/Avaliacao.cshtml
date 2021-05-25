@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ConsertoDeLivro.Models.Pedido>
+@{
+    ViewBag.Title = "Avaliações";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/FormsTelas.css" rel="stylesheet" />
+<script src="~/Scripts/bumbleblee.js"></script>
+
+<style>
+    .avaliacao {
+        padding: 10px;
+    }
+
+    .flexRS {
+        margin: 0 20px;
+    }
+
+    .flexRS label {
+        margin: 0;
+        padding: 5px;
+        /*border: 1px solid black;*/
+        border-bottom: 0px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .flexRS [selecionado] {
+        background-color: rgba(117, 158, 209, 0.5);
+    }
+</style>
+
+<div class="divForm">
+    <label class="lblTitulo">@ViewBag.Title</label>
+    <hr />
+    <div class="flexRS">
+        <label id="UltimasAvaliacoes" selecionado onclick="minhaFunc(this)">Últimas avaliações</label>
+        <label id="MelhoresAvaliacoes" onclick="minhaFunc(this)">Melhores avaliações</label>
+        <label id="PioresAvaliacoes" onclick="minhaFunc(this)">Piores avaliações</label>
+    </div>
+    <div class="divCentral avaliacao">
+        <div class="io" hidden>
+            <div class="nota flexCCC">
+                <label id="nota"></label>
+            </div>
+            <div class="flexC">
+                <label id="ultimoNome"></label>
+                <label id="dataPdd"></label>
+            </div>
+            <div class="flexCCC">
+                <label id="comentario"></label>
+            </div>
+        </div>
+    </div>
+</div>

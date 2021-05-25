@@ -41,6 +41,7 @@
             <div class="sttPedidos">
                 <label id="Finalizados" class="titulo finalizados" onclick="exibirDiv(this)">Finalizados <span id="numFinalizados"></span></label>
                 <div style="display: none">
+                    @Html.Partial("_SemPedidos")
                     <div class="pdd" hidden>
                         <div>
                             <label>Cod. Pedido: <span id="idPedido"></span></label><br />
@@ -60,12 +61,13 @@
                             <label>Descrição: <span id="descricao"></span></label>
                         </div>
                         <div class="btnPdd">
-                            <span class="btn btn-primary btn-xs" id="avaliarPedido">Avaliar Pedido</span>
                             @if (usuario.Adm) {
                                 <span id="btnEntregar" class="btn btn-success btn-xs">Entregar Pedido</span>
                                 <span id="infoEntregue" class="bold">Pedido Entregue</span>
                                 <br />
                             } else {
+                                <span id="nota" hidden><span class="glyphicon glyphicon-star"></span></span>
+                                <span id="avaliarPedido" hidden>Avaliar Pedido</span>
                                 <span id="infoRetirar" class="bold red">Aguardando Retirada</span>
                                 <span id="infoRetirado" class="bold yellow">Produto Retirado</span>
                                 <br />
@@ -80,6 +82,7 @@
             <div class="sttPedidos">
                 <label id="Aceitos" class="titulo aceitos" onclick="exibirDiv(this)">Aceitos <span id="numAceitos"></span></label>
                 <div style="display: none">
+                    @Html.Partial("_SemPedidos")
                     <div class="pdd" hidden>
                         <div>
                             <label>Cod. Pedido: <span id="idPedido"></span></label><br />
@@ -112,6 +115,7 @@
             <div class="sttPedidos">
                 <label id="Aguardando" class="titulo aguardando" onclick="exibirDiv(this)">Aguardando <span id="numAguardando"></span> </label>
                 <div style="display: none">
+                    @Html.Partial("_SemPedidos")
                     <div class="pdd" hidden>
                         <div>
                             <label>Cod. Pedido: <span id="idPedido"></span></label><br />
@@ -147,6 +151,7 @@
             <div class="sttPedidos">
                 <label id="Recusados" class="titulo recusados" onclick="exibirDiv(this)">Recusados <span id="numRecusados"></span></label>
                 <div style="display: none">
+                    @Html.Partial("_SemPedidos")
                     <div class="pdd" hidden>
                         <div>
                             <label>Cod. Pedido: <span id="idPedido"></span></label><br />
@@ -192,7 +197,8 @@
             <div class="flexCCC mgHorzDez">
                 <label>Qual nota você daria para o serviço realizado no seu livro?</label>
                 <div>
-                    <label id="livro">Livro</label> -
+                    <label hidden id="idPedido"></label>
+                    <label id="livro">Livro</label>&nbsp;
                     <label id="autor">Autor</label>
                 </div>
                 <div class="notas flexRE">
@@ -206,6 +212,10 @@
                     <span class="bom" onclick="selecionaNum(this)">8</span>
                     <span class="muito-bom" onclick="selecionaNum(this)">9</span>
                     <span class="otimo" onclick="selecionaNum(this)">10</span>
+                </div>
+                <div class="flexCCC">
+                    <label>Deixe aqui seu comentário:</label>
+                    <textarea id="comentario" class="textAreaComentario" maxlength="120"></textarea>
                 </div>
                 <div>
                     <span class="btn btn-primary btn-sm" onclick="salvarAvaliacao()">Salvar avaliação</span>

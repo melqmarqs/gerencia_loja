@@ -182,6 +182,17 @@ table {
     overflow-y: auto;
 }
 
+.sttPedidos .semPedidos {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(214, 92, 92, 0.5);
+}
+
+.sttPedidos .semPedidos:hover {
+    background-color: rgba(214, 92, 92, 0.6);
+}
+
 .sttPedidos .pdd[pedido] {
     margin: 10px;
     padding: 10px;
@@ -375,4 +386,71 @@ table {
 
 .otimo {
     background-color: rgba(54, 163, 61, 0.7);
+}
+
+.textAreaComentario {
+    resize: none;
+    width: 380px;
+    height: 90px;
+    margin-bottom: 15px;
+}
+
+#nota {
+    font-weight: bold;
+    padding: 3px;
+    font-size: 1em;
+    border-radius: 4px;
+    text-transform: lowercase;
+}
+
+.flexRS {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.flexRS > div {
+    width: 50%;
+}
+
+.flexC {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 40px;
+}
+
+.io {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100px;
+    /*background-color: #C95CC3;*/
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.io:last-child {
+    margin-bottom: 0;
+}
+
+.io #nota {
+    font-size: 2.5em;
+    margin: 0;
+    padding: 0;
+}
+
+.io .nota {
+    margin-right: 20px;
+    width: 45px;
+}
+
+.io #ultimoNome {
+    font-size: 1.5em;
+}
+
+.io #comentario {
+    font-size: 1.1em;
 }

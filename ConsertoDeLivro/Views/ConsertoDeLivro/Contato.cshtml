@@ -6,6 +6,8 @@
     Endereco endereco = new Endereco();
 }
 
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
 <style>
     .divCorpo > label {
         margin-left: 10px;
@@ -14,11 +16,11 @@
         padding: 5px;
         border-radius: 3px;
     }
-</style>
 
+    .divCorpo span {
+        margin: 0;
+    }
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style>
     #map {
         height: 500px;
         width: 500px;
@@ -29,6 +31,7 @@
         margin-left: 20px;
     }
 </style>
+
 <script src="~/Scripts/cep.js" type="text/javascript"></script>
 
 
@@ -41,7 +44,7 @@
         <label>WhatsApp: (19) 99493-4733</label>
     </div>
     <div class="divCorpo">
-        <label>@endereco.getEndCompleto()</label>
+        <label><span>Nosso endereço: </span>@endereco.getEndCompleto()</label>
     </div>
     <div id="map">
     </div>

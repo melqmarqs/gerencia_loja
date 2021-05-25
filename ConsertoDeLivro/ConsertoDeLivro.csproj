@@ -563,6 +563,8 @@
     <Content Include="Scripts\jquery-3.5.1.min.map" />
     <Content Include="Views\ConsertoDeLivro\Contato.cshtml" />
     <Content Include="Views\Pedido\DetalhesPedido.cshtml" />
+    <Content Include="Views\Shared\_SemPedidos.cshtml" />
+    <Content Include="Views\Pedido\Avaliacao.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

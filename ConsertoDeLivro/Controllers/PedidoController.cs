@@ -67,13 +67,35 @@ namespace ConsertoDeLivro.Controllers {
             return View(pedido);
         }
 
+        public ActionResult Avaliacao() {
+            List<Pedido> pedidos = db.Pedidos.Where(pdd => pdd.Avaliacao > 0).ToList();
+            return View(pedidos);
+        }
+
+        public ActionResult getUltimasAvaliacoes() {
+            List<Pedido> pedidos = db.Pedidos.Where(pdd => pdd.Avaliacao > 0).OrderByDescending(pdd => pdd.PedidoID).ToList();
+            return Json(pedidos, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult getMelhoresAvaliacoes() {
+            List<Pedido> pedidos = db.Pedidos.Where(pdd => pdd.Avaliacao > 0).OrderByDescending(pdd => pdd.Avaliacao).ToList();
+            return Json(pedidos, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult getPioresAvaliacoes() {
+            List<Pedido> pedidos = db.Pedidos.Where(pdd => pdd.Avaliacao > 0).OrderBy(pdd => pdd.Avaliacao).ToList();
+            return Json(pedidos, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult getPedidosAceitos() {
             Usuario usuario = Session["Usuario"] as Usuario;
             List<Pedido> pedidos = new List<Pedido>();
-            if (usuario != null && usuario.Adm)
-                pedidos = db.Pedidos.Where(pdd => pdd.Aceito && !pdd.Feito).OrderByDescending(desc => desc.PedidoID).ToList();
-            else
-                pedidos = db.Pedidos.Where(pdd => pdd.Aceito && !pdd.Feito && pdd.UsuarioID == usuario.UsuarioID).OrderByDescending(desc => desc.PedidoID).ToList();
+            if (usuario != null) {
+                if (usuario.Adm)
+                    pedidos = db.Pedidos.Where(pdd => pdd.Aceito && !pdd.Feito).OrderByDescending(desc => desc.PedidoID).ToList();
+                else
+                    pedidos = db.Pedidos.Where(pdd => pdd.Aceito && !pdd.Feito && pdd.UsuarioID == usuario.UsuarioID).OrderByDescending(desc => desc.PedidoID).ToList();
+            }
 
             return Json(pedidos, JsonRequestBehavior.AllowGet);
         }
@@ -81,10 +103,12 @@ namespace ConsertoDeLivro.Controllers {
         public ActionResult getPedidosAguardando() {
             Usuario usuario = Session["Usuario"] as Usuario;
             List<Pedido> pedidos = new List<Pedido>();
-            if (usuario != null && usuario.Adm)
-                pedidos = db.Pedidos.Where(pdd => !pdd.Aceito && !pdd.Recusado).OrderBy(ordem => ordem.PedidoID).ToList();
-            else
-                pedidos = db.Pedidos.Where(pdd => !pdd.Aceito && !pdd.Recusado && pdd.UsuarioID == usuario.UsuarioID).OrderByDescending(desc => desc.PedidoID).ToList();
+            if (usuario != null) {
+                if (usuario.Adm)
+                    pedidos = db.Pedidos.Where(pdd => !pdd.Aceito && !pdd.Recusado).OrderBy(ordem => ordem.PedidoID).ToList();
+                else
+                    pedidos = db.Pedidos.Where(pdd => !pdd.Aceito && !pdd.Recusado && pdd.UsuarioID == usuario.UsuarioID).OrderByDescending(desc => desc.PedidoID).ToList();
+            }
 
             return Json(pedidos, JsonRequestBehavior.AllowGet);
         }
@@ -105,10 +129,12 @@ namespace ConsertoDeLivro.Controllers {
         public ActionResult getPedidosFinalizados() {
             Usuario usuario = Session["Usuario"] as Usuario;
             List<Pedido> pedidos = new List<Pedido>();
-            if (usuario != null && usuario.Adm)
-                pedidos = db.Pedidos.Where(pdd => pdd.Feito).OrderByDescending(desc => desc.PedidoID).ToList();
-            else
-                pedidos = db.Pedidos.Where(pdd => (pdd.Feito || pdd.Entregue) && pdd.UsuarioID == usuario.UsuarioID).OrderByDescending(desc => desc.PedidoID).ToList();
+            if (usuario != null) {
+                if (usuario.Adm)
+                    pedidos = db.Pedidos.Where(pdd => pdd.Feito).OrderByDescending(desc => desc.PedidoID).ToList();
+                else
+                    pedidos = db.Pedidos.Where(pdd => pdd.Feito && pdd.UsuarioID == usuario.UsuarioID).OrderByDescending(desc => desc.PedidoID).ToList();
+            }
 
             return Json(pedidos, JsonRequestBehavior.AllowGet);
         }
@@ -216,7 +242,7 @@ namespace ConsertoDeLivro.Controllers {
                 return Json(pedido, JsonRequestBehavior.AllowGet);
             }
 
-            return Json(Resposta.Erro, JsonRequestBehavior.AllowGet);
+            return Json(Resposta.Falha, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult setAvaliacaoEComentario(int idPedido, int avaliacao, string comentario) {

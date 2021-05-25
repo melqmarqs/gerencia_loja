@@ -8,6 +8,7 @@ namespace ConsertoDeLivro.Models {
         Ok,
         Sucesso,
         Erro,
-        Falha
+        Falha,
+        Vazio
     }
 }

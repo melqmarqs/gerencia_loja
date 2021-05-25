@@ -12,54 +12,68 @@
 
     @if (Model != null) {
         <div class="divCentral">
-            <div>
-                <label class="lblInfo">Informações pedido</label><br />
-                <div class="infoPdd">
-                    <label>Cod. Pedido: @Model.PedidoID</label>
-                    <label>Data/Hora: @Model.DataPedido</label>
-                    <label>Preço: @Model.Valor</label>
+            <div class="flexRS">
+                <div>
+                    <label class="lblInfo">Informações pedido</label><br />
+                    <div class="infoPdd">
+                        <label>Cod. Pedido: @Model.PedidoID</label>
+                        <label>Data/Hora: @Model.DataPedido</label>
+                        <label>Preço: @Model.Valor</label>
+                        @if (Model.Avaliacao != 0) {
+                            <label>Avaliação: @Model.Avaliacao</label>
+                        }
+                    </div>
+                </div>
+                <div>
+                    <label class="lblInfo">Informações cliente</label><br />
+                    <div class="infoPdd">
+                        <label>Nome: @Model.Usuario.Nome @Model.Usuario.UltimoNome</label>
+                        <label>Endereco: @Model.Usuario.getEndereco()</label>
+                        <label>Celular: @Model.Usuario.getNumCelularFormatado()</label>
+                    </div>
                 </div>
             </div>
-            <div>
-                <label class="lblInfo">Informações cliente</label><br />
-                <div class="infoPdd">
-                    <label>Nome: @Model.Usuario.Nome @Model.Usuario.UltimoNome</label>
-                    <label>Endereco: @Model.Usuario.getEndereco()</label>
-                    <label>Celular: @Model.Usuario.getNumCelularFormatado()</label>
+            <div class="flexRS">
+                <div>
+                    <label class="lblInfo">Informações do livro</label><br />
+                    <div class="infoPdd">
+                        <label>Autor: @Model.AutorLivro</label>
+                        <label>Nome do livro: @Model.NomeLivro</label>
+                    </div>
+                </div>
+                <div>
+                    <label class="lblInfo">Dimensões</label><br />
+                    <div class="infoPdd">
+                        <label>Largura: @Model.Largura cm</label>
+                        <label>Altura: @Model.Altura cm</label>
+                        <label>Expessura: @Model.Expessura cm</label>
+                    </div>
                 </div>
             </div>
-            <div>
-                <label class="lblInfo">Informações do livro</label><br />
-                <div class="infoPdd">
-                    <label>Autor: @Model.AutorLivro</label>
-                    <label>Nome do livro: @Model.NomeLivro</label>
+            <div class="flexRS">
+                <div>
+                    <label class="lblInfo">Informações adicionais</label><br />
+                    <div class="infoPdd">
+                        <label>Descrição do pedido: @Model.Descricao</label>
+                        <label>
+                            Status:
+                            @if (Model.Entregue) {
+                                <span>Entregue</span>
+                            } else if (Model.Feito) {
+                                <span>Feito</span>
+                            } else if (Model.Aceito) {
+                                <span>Aceito</span>
+                            } else if (!Model.Aceito && !Model.Recusado) {
+                                <span>Aguardando</span>
+                            } else if (Model.Recusado) {
+                                <span>Recusado</span>
+                            }
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <label class="lblInfo">Dimensões</label><br />
-                <div class="infoPdd">
-                    <label>Largura: @Model.Largura cm</label>
-                    <label>Altura: @Model.Altura cm</label>
-                    <label>Expessura: @Model.Expessura cm</label>
-                </div>
-            </div>
-            <div>
-                <label class="lblInfo">Informações adicionais</label><br />
-                <div class="infoPdd">
-                    <label>Descrição do pedido: @Model.Descricao</label>
-                    <label>Status: 
-                    @if(Model.Entregue) {
-                        <span>Entregue</span>
-                    }else if (Model.Feito) {
-                        <span>Feito</span>
-                    }else if (Model.Aceito) {
-                        <span>Aceito</span>
-                    }else if (!Model.Aceito && !Model.Recusado) {
-                        <span>Aguardando</span>
-                    } else if (Model.Recusado) {
-                        <span>Recusado</span>
-                    }
-                    </label>
+                <div>
+                    <label class="lblInfo">Comentário</label>
+                    <label>@Model.Comentario</label>
                 </div>
             </div>
         </div>

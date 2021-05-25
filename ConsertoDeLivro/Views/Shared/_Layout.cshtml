@@ -22,7 +22,7 @@
                 <img src="~/Images/livros.png" alt="Logo" height="45" />
             </a>
             @Html.ActionLink("Home", "Index", "ConsertoDeLivro")
-            @Html.ActionLink("Contato", "Contato", "ConsertoDeLivro")
+            <a href="/Pedido/Avaliacao">Avaliações</a>
             @{
                 if (usuario != null) {
                     if (usuario.Adm) {
@@ -34,6 +34,7 @@
                     }
                 }
             }
+            @Html.ActionLink("Contato", "Contato", "ConsertoDeLivro")
         </div>
         <div class="btnsEntrarCadastrar">
             @{
