@@ -22,7 +22,7 @@
                     <div>
                         @Html.LabelFor(model => model.Largura)
                         <span>
-                            @Html.TextBoxFor(model => model.Largura, new { @onkeypress = "apenasNumeros(this, event)", @onkeyup = "precoMaterial(this, event)" }) cm
+                            @Html.TextBoxFor(model => model.Largura, new { @onkeypress = "numeroDecimal(this, event)", @onkeyup = "precoMaterial(this, event)" }) cm
                         </span>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div>
                         @Html.LabelFor(model => model.Altura)
                         <span>
-                            @Html.TextBoxFor(model => model.Altura, new { @onkeypress = "apenasNumeros(this, event)", @onkeyup = "precoMaterial(this, event)" }) cm
+                            @Html.TextBoxFor(model => model.Altura, new { @onkeypress = "numeroDecimal(this, event)", @onkeyup = "precoMaterial(this, event)" }) cm
                         </span>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div>
                         @Html.LabelFor(model => model.Expessura)
                         <span>
-                            @Html.TextBoxFor(model => model.Expessura, new { @onkeypress = "apenasNumeros(this, event)", @onkeyup = "precoMaterial(this, event)" }) cm
+                            @Html.TextBoxFor(model => model.Expessura, new { @onkeypress = "numeroDecimal(this, event)", @onkeyup = "precoMaterial(this, event)" }) cm
                         </span>
                     </div>
                 </div>

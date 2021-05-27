@@ -157,25 +157,35 @@ function conferirCampoValor(key) {
     }
 }
 
-function apenasNumeros(tag, key) {
+function numeroDecimal(tag, key) {
 
     let cod = key.keyCode || key.which;
+    let tam = tag.value.includes(',') ? 3 : 2;
 
-    if (((cod < 48 || cod > 57) && (cod < 96 || cod > 105)) || tag.value.length > 2) {
+    if (tag.value.includes(',') && tag.value.split(',')[1].length >= 1) {
+        key.preventDefault();
+        return true;
+    }
+
+    if (cod != 44) {
+        if (((cod < 48 || cod > 57) && (cod < 96 || cod > 105)) || tag.value.length > tam) {
+            key.preventDefault();
+        }
+    } else if (tag.value.includes(',') || tag.value == '' || tag.value.length >= 3) {
         key.preventDefault();
     }
 }
 
 function precoMaterial(tag, key) {
-    larg = tag.id == 'Largura' ? tag.value : larg;
-    alt = tag.id == 'Altura' ? tag.value : alt;
-    exp = tag.id == 'Expessura' ? tag.value : exp;
+    larg = tag.id == 'Largura' ? tag.value.replace(',', '.') : larg;
+    alt = tag.id == 'Altura' ? tag.value.replace(',', '.') : alt;
+    exp = tag.id == 'Expessura' ? tag.value.replace(',', '.') : exp;
 
-    larg = parseInt(larg) || parseFloat($('#Largura').val());
-    alt = parseInt(alt) || parseFloat($('#Altura').val());
-    exp = parseInt(exp) || parseFloat($('#Expessura').val());
+    larg = parseFloat(larg) || parseFloat($('#Largura').val().replace(',','.'));
+    alt = parseFloat(alt) || parseFloat($('#Altura').val().replace(',', '.'));
+    exp = parseFloat(exp) || parseFloat($('#Expessura').val().replace(',', '.'));
 
-    if (larg > 0 && alt > 0 && (exp != undefined && !isNaN(exp))) {
+    if (larg > 0 && alt > 0 && exp > 0) {
         let matId = $('select[name="MaterialID"]')[0].value;
         $.ajax({
             url: '/Material/getMaterialById',
